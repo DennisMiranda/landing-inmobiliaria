@@ -1,114 +1,116 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
 
-@theme {
-  /* Amira Inmobiliaria - Professional Blue Theme */
-  --color-background: oklch(98% 0.02 260);
-  --color-foreground: oklch(15% 0.05 260);
-  
-  --color-card: oklch(100% 0 0);
-  --color-card-foreground: oklch(15% 0.05 260);
-  
-  --color-popover: oklch(100% 0 0);
-  --color-popover-foreground: oklch(15% 0.05 260);
-  
-  /* Primary Blue */
-  --color-primary: oklch(55% 0.2 260);
-  --color-primary-foreground: oklch(98% 0.02 260);
-  --color-primary-dark: oklch(40% 0.2 260);
-  --color-primary-light: oklch(60% 0.2 260);
-  
-  /* Secondary - Warm accent */
-  --color-secondary: oklch(65% 0.2 70);
-  --color-secondary-foreground: oklch(15% 0.05 260);
-  
-  --color-muted: oklch(96% 0.02 260);
-  --color-muted-foreground: oklch(50% 0.05 260);
-  
-  --color-accent: oklch(96% 0.02 260);
-  --color-accent-foreground: oklch(15% 0.05 260);
-  
-  --color-destructive: oklch(55% 0.2 25);
-  --color-destructive-foreground: oklch(98% 0.02 260);
-  
-  --color-border: oklch(90% 0.02 260);
-  --color-input: oklch(90% 0.02 260);
-  --color-ring: oklch(55% 0.2 260);
-  
-  --radius: 0.75rem;
-  
-  /* Custom gradients */
-  --gradient-primary: linear-gradient(135deg, oklch(40% 0.2 260) 0%, oklch(55% 0.2 260) 50%, oklch(60% 0.2 260) 100%);
-  --gradient-hero: linear-gradient(180deg, oklch(55% 0.2 260 / 0.1) 0%, oklch(98% 0.02 260) 100%);
-  --gradient-card: linear-gradient(145deg, oklch(100% 0 0) 0%, oklch(96% 0.02 260) 100%);
-  
-  /* Shadows */
-  --shadow-card: 0 4px 20px -4px oklch(55% 0.2 260 / 0.15);
-  --shadow-card-hover: 0 12px 40px -8px oklch(55% 0.2 260 / 0.25);
-  --shadow-button: 0 4px 14px -3px oklch(55% 0.2 260 / 0.4);
-  
-  /* Sidebar */
-  --color-sidebar-background: oklch(98% 0.02 260);
-  --color-sidebar-foreground: oklch(30% 0.05 260);
-  --color-sidebar-primary: oklch(55% 0.2 260);
-  --color-sidebar-primary-foreground: oklch(98% 0.02 260);
-  --color-sidebar-accent: oklch(96% 0.02 260);
-  --color-sidebar-accent-foreground: oklch(15% 0.05 260);
-  --color-sidebar-border: oklch(90% 0.02 260);
-  --color-sidebar-ring: oklch(55% 0.2 260);
-  
-}
-/* Dark theme */
-  @media (prefers-color-scheme: dark) {
-    --color-background: oklch(15% 0.02 260);
-    --color-foreground: oklch(98% 0.02 260);
+@layer base {
+  :root {
+    /* Amira Inmobiliaria - Professional Blue Theme */
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary Blue */
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --primary-dark: 224 76% 33%;
+    --primary-light: 217 91% 60%;
+
+    /* Secondary - Warm accent */
+    --secondary: 38 92% 50%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(224 76% 33%) 0%, hsl(221 83% 53%) 50%, hsl(217 91% 60%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(221 83% 53% / 0.1) 0%, hsl(210 20% 98%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
     
-    --color-card: oklch(20% 0.02 260);
-    --color-card-foreground: oklch(98% 0.02 260);
-    
-    --color-popover: oklch(20% 0.02 260);
-    --color-popover-foreground: oklch(98% 0.02 260);
-    
-    --color-primary: oklch(60% 0.2 260);
-    --color-primary-foreground: oklch(15% 0.05 260);
-    --color-primary-dark: oklch(55% 0.2 260);
-    --color-primary-light: oklch(65% 0.2 260);
-    
-    --color-secondary: oklch(65% 0.2 70);
-    --color-secondary-foreground: oklch(15% 0.05 260);
-    
-    --color-muted: oklch(25% 0.02 260);
-    --color-muted-foreground: oklch(70% 0.05 260);
-    
-    --color-accent: oklch(25% 0.02 260);
-    --color-accent-foreground: oklch(98% 0.02 260);
-    
-    --color-destructive: oklch(40% 0.2 25);
-    --color-destructive-foreground: oklch(98% 0.02 260);
-    
-    --color-border: oklch(25% 0.02 260);
-    --color-input: oklch(25% 0.02 260);
-    --color-ring: oklch(60% 0.2 260);
-    
-    --color-sidebar-background: oklch(20% 0.02 260);
-    --color-sidebar-foreground: oklch(98% 0.02 260);
-    --color-sidebar-primary: oklch(60% 0.2 260);
-    --color-sidebar-primary-foreground: oklch(15% 0.05 260);
-    --color-sidebar-accent: oklch(25% 0.02 260);
-    --color-sidebar-accent-foreground: oklch(98% 0.02 260);
-    --color-sidebar-border: oklch(25% 0.02 260);
-    --color-sidebar-ring: oklch(60% 0.2 260);
+    /* Shadows */
+    --shadow-card: 0 4px 20px -4px hsl(221 83% 53% / 0.15);
+    --shadow-card-hover: 0 12px 40px -8px hsl(221 83% 53% / 0.25);
+    --shadow-button: 0 4px 14px -3px hsl(221 83% 53% / 0.4);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 221 83% 53%;
   }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+    --primary-dark: 221 83% 53%;
+    --primary-light: 213 94% 68%;
+
+    --secondary: 38 92% 50%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Open Sans', sans-serif;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
   }
@@ -118,76 +120,77 @@
   .section-container {
     @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
+
   .section-padding {
     @apply py-12 sm:py-16 lg:py-20;
   }
-  
+
   .heading-primary {
     @apply text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground;
     font-family: 'Montserrat', sans-serif;
   }
-  
+
   .heading-secondary {
     @apply text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground;
     font-family: 'Montserrat', sans-serif;
   }
-  
+
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-dark via-primary to-primary-light;
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
   }
-  
+
   .card-property {
-    @apply bg-card rounded-xl overflow-hidden transition-all duration-300 shadow-[--shadow-card];
-    
-    &:hover {
-      @apply shadow-[--shadow-card-hover] -translate-y-1;
-    }
+    @apply bg-card rounded-xl overflow-hidden transition-all duration-300;
+    box-shadow: var(--shadow-card);
   }
-  
-  .btn {
-    @apply font-semibold rounded-lg transition-all duration-300;
+
+  .card-property:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
   }
-  
+
   .btn-primary {
-    @apply bg-primary text-primary-foreground shadow-[--shadow-button];
-    
-    &:hover {
-      @apply brightness-110 -translate-y-0.5;
-    }
+    @apply bg-primary text-primary-foreground font-semibold rounded-lg transition-all duration-300;
+    box-shadow: var(--shadow-button);
   }
-  
+
+  .btn-primary:hover {
+    @apply brightness-110;
+    transform: translateY(-2px);
+  }
+
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground;
+    @apply bg-secondary text-secondary-foreground font-semibold rounded-lg transition-all duration-300;
   }
-  
+
   .filter-chip {
-    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer
-           bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground;
+    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer;
+    @apply bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground;
   }
-  
+
   .filter-chip-active {
     @apply bg-primary text-primary-foreground;
   }
-  
+
   .input-field {
-    @apply w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground
-           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
-           transition-all duration-200;
+    @apply w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+    @apply transition-all duration-200;
   }
-  
+
   .tag-badge {
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
   }
-  
+
   .tag-sale {
     @apply bg-primary/10 text-primary;
   }
-  
+
   .tag-rent {
     @apply bg-secondary/10 text-secondary;
   }
-  
+
   .tag-project {
     @apply bg-green-500/10 text-green-600;
   }
@@ -195,21 +198,41 @@
 
 @layer utilities {
   .animate-fade-up {
-    @apply animate-fade-in animate-slide-up [animation-duration:0.6s] [animation-timing-function:ease-out] animate-fill-both;
+    animation: fadeUp 0.6s ease-out forwards;
   }
-  
-  .animate-fade-in {
-    @apply opacity-0 animate-fade [animation-duration:0.6s] [animation-timing-function:ease-out] animate-fill-both;
-  }
-  
-  .animate-slide-in {
-    @apply opacity-0 -translate-x-5 animate-slide [animation-duration:0.5s] [animation-timing-function:ease-out] animate-fill-both;
-  }
-}
 
-/* Dark mode specific overrides */
-@layer dark {
-  .tag-project {
-    @apply text-green-400;
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 }
