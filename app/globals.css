@@ -1,26 +1,215 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Amira Inmobiliaria - Professional Blue Theme */
+  --color-background: oklch(98% 0.02 260);
+  --color-foreground: oklch(15% 0.05 260);
+  
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(15% 0.05 260);
+  
+  --color-popover: oklch(100% 0 0);
+  --color-popover-foreground: oklch(15% 0.05 260);
+  
+  /* Primary Blue */
+  --color-primary: oklch(55% 0.2 260);
+  --color-primary-foreground: oklch(98% 0.02 260);
+  --color-primary-dark: oklch(40% 0.2 260);
+  --color-primary-light: oklch(60% 0.2 260);
+  
+  /* Secondary - Warm accent */
+  --color-secondary: oklch(65% 0.2 70);
+  --color-secondary-foreground: oklch(15% 0.05 260);
+  
+  --color-muted: oklch(96% 0.02 260);
+  --color-muted-foreground: oklch(50% 0.05 260);
+  
+  --color-accent: oklch(96% 0.02 260);
+  --color-accent-foreground: oklch(15% 0.05 260);
+  
+  --color-destructive: oklch(55% 0.2 25);
+  --color-destructive-foreground: oklch(98% 0.02 260);
+  
+  --color-border: oklch(90% 0.02 260);
+  --color-input: oklch(90% 0.02 260);
+  --color-ring: oklch(55% 0.2 260);
+  
+  --radius: 0.75rem;
+  
+  /* Custom gradients */
+  --gradient-primary: linear-gradient(135deg, oklch(40% 0.2 260) 0%, oklch(55% 0.2 260) 50%, oklch(60% 0.2 260) 100%);
+  --gradient-hero: linear-gradient(180deg, oklch(55% 0.2 260 / 0.1) 0%, oklch(98% 0.02 260) 100%);
+  --gradient-card: linear-gradient(145deg, oklch(100% 0 0) 0%, oklch(96% 0.02 260) 100%);
+  
+  /* Shadows */
+  --shadow-card: 0 4px 20px -4px oklch(55% 0.2 260 / 0.15);
+  --shadow-card-hover: 0 12px 40px -8px oklch(55% 0.2 260 / 0.25);
+  --shadow-button: 0 4px 14px -3px oklch(55% 0.2 260 / 0.4);
+  
+  /* Sidebar */
+  --color-sidebar-background: oklch(98% 0.02 260);
+  --color-sidebar-foreground: oklch(30% 0.05 260);
+  --color-sidebar-primary: oklch(55% 0.2 260);
+  --color-sidebar-primary-foreground: oklch(98% 0.02 260);
+  --color-sidebar-accent: oklch(96% 0.02 260);
+  --color-sidebar-accent-foreground: oklch(15% 0.05 260);
+  --color-sidebar-border: oklch(90% 0.02 260);
+  --color-sidebar-ring: oklch(55% 0.2 260);
+  
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Dark theme */
+  @media (prefers-color-scheme: dark) {
+    --color-background: oklch(15% 0.02 260);
+    --color-foreground: oklch(98% 0.02 260);
+    
+    --color-card: oklch(20% 0.02 260);
+    --color-card-foreground: oklch(98% 0.02 260);
+    
+    --color-popover: oklch(20% 0.02 260);
+    --color-popover-foreground: oklch(98% 0.02 260);
+    
+    --color-primary: oklch(60% 0.2 260);
+    --color-primary-foreground: oklch(15% 0.05 260);
+    --color-primary-dark: oklch(55% 0.2 260);
+    --color-primary-light: oklch(65% 0.2 260);
+    
+    --color-secondary: oklch(65% 0.2 70);
+    --color-secondary-foreground: oklch(15% 0.05 260);
+    
+    --color-muted: oklch(25% 0.02 260);
+    --color-muted-foreground: oklch(70% 0.05 260);
+    
+    --color-accent: oklch(25% 0.02 260);
+    --color-accent-foreground: oklch(98% 0.02 260);
+    
+    --color-destructive: oklch(40% 0.2 25);
+    --color-destructive-foreground: oklch(98% 0.02 260);
+    
+    --color-border: oklch(25% 0.02 260);
+    --color-input: oklch(25% 0.02 260);
+    --color-ring: oklch(60% 0.2 260);
+    
+    --color-sidebar-background: oklch(20% 0.02 260);
+    --color-sidebar-foreground: oklch(98% 0.02 260);
+    --color-sidebar-primary: oklch(60% 0.2 260);
+    --color-sidebar-primary-foreground: oklch(15% 0.05 260);
+    --color-sidebar-accent: oklch(25% 0.02 260);
+    --color-sidebar-accent-foreground: oklch(98% 0.02 260);
+    --color-sidebar-border: oklch(25% 0.02 260);
+    --color-sidebar-ring: oklch(60% 0.2 260);
+  }
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .section-container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section-padding {
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+  
+  .heading-primary {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .heading-secondary {
+    @apply text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-dark via-primary to-primary-light;
+  }
+  
+  .card-property {
+    @apply bg-card rounded-xl overflow-hidden transition-all duration-300 shadow-[--shadow-card];
+    
+    &:hover {
+      @apply shadow-[--shadow-card-hover] -translate-y-1;
+    }
+  }
+  
+  .btn {
+    @apply font-semibold rounded-lg transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-primary-foreground shadow-[--shadow-button];
+    
+    &:hover {
+      @apply brightness-110 -translate-y-0.5;
+    }
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground;
+  }
+  
+  .filter-chip {
+    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer
+           bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground;
+  }
+  
+  .filter-chip-active {
+    @apply bg-primary text-primary-foreground;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground
+           focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+           transition-all duration-200;
+  }
+  
+  .tag-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .tag-sale {
+    @apply bg-primary/10 text-primary;
+  }
+  
+  .tag-rent {
+    @apply bg-secondary/10 text-secondary;
+  }
+  
+  .tag-project {
+    @apply bg-green-500/10 text-green-600;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    @apply animate-fade-in animate-slide-up [animation-duration:0.6s] [animation-timing-function:ease-out] animate-fill-both;
+  }
+  
+  .animate-fade-in {
+    @apply opacity-0 animate-fade [animation-duration:0.6s] [animation-timing-function:ease-out] animate-fill-both;
+  }
+  
+  .animate-slide-in {
+    @apply opacity-0 -translate-x-5 animate-slide [animation-duration:0.5s] [animation-timing-function:ease-out] animate-fill-both;
+  }
+}
+
+/* Dark mode specific overrides */
+@layer dark {
+  .tag-project {
+    @apply text-green-400;
+  }
 }
