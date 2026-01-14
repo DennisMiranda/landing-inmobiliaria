@@ -1,65 +1,139 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
 
-@layer base {
+:root {
+  /* Amira Inmobiliaria - Professional Blue Theme */
+  --background: 210 20% 98%;
+  --foreground: 222 47% 11%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+
+  /* Primary Blue */
+  --primary: 221 83% 53%;
+  --primary-foreground: 210 40% 98%;
+  --primary-dark: 224 76% 33%;
+  --primary-light: 217 91% 60%;
+
+  /* Secondary - Warm accent */
+  --secondary: 38 92% 50%;
+  --secondary-foreground: 222 47% 11%;
+
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
+
+  --accent: 210 40% 96%;
+  --accent-foreground: 222 47% 11%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 221 83% 53%;
+
+  --radius: 0.75rem;
+
+  /* Custom gradients */
+  --gradient-primary: linear-gradient(
+    135deg,
+    hsl(224 76% 33%) 0%,
+    hsl(221 83% 53%) 50%,
+    hsl(217 91% 60%) 100%
+  );
+  --gradient-hero: linear-gradient(
+    180deg,
+    hsl(221 83% 53% / 0.1) 0%,
+    hsl(210 20% 98%) 100%
+  );
+  --gradient-card: linear-gradient(
+    145deg,
+    hsl(0 0% 100%) 0%,
+    hsl(210 40% 98%) 100%
+  );
+
+  /* Shadows */
+  --shadow-card: 0 4px 20px -4px hsl(221 83% 53% / 0.15);
+  --shadow-card-hover: 0 12px 40px -8px hsl(221 83% 53% / 0.25);
+  --shadow-button: 0 4px 14px -3px hsl(221 83% 53% / 0.4);
+
+  /* Sidebar */
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5% 26%;
+  --sidebar-primary: 221 83% 53%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 210 40% 96%;
+  --sidebar-accent-foreground: 222 47% 11%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 221 83% 53%;
+}
+
+@theme inline {
+  /* Base colors */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  /* Primary colors */
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-dark: hsl(var(--primary-dark));
+  --color-primary-light: hsl(var(--primary-light));
+
+  /* Secondary colors */
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  /* Muted colors */
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  /* Accent colors */
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  /* Destructive colors */
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  /* Border and input */
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --border-radius: var(--radius);
+
+  /* Sidebar colors */
+  --color-sidebar-background: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Gradients */
+  --gradient-primary: var(--gradient-primary);
+  --gradient-hero: var(--gradient-hero);
+  --gradient-card: var(--gradient-card);
+
+  /* Shadows */
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
+  --shadow-button: var(--shadow-button);
+}
+
+@media (prefers-color-scheme: dark) {
   :root {
-    /* Amira Inmobiliaria - Professional Blue Theme */
-    --background: 210 20% 98%;
-    --foreground: 222 47% 11%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-
-    /* Primary Blue */
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
-    --primary-dark: 224 76% 33%;
-    --primary-light: 217 91% 60%;
-
-    /* Secondary - Warm accent */
-    --secondary: 38 92% 50%;
-    --secondary-foreground: 222 47% 11%;
-
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 221 83% 53%;
-
-    --radius: 0.75rem;
-
-    /* Custom gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(224 76% 33%) 0%, hsl(221 83% 53%) 50%, hsl(217 91% 60%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(221 83% 53% / 0.1) 0%, hsl(210 20% 98%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
-    
-    /* Shadows */
-    --shadow-card: 0 4px 20px -4px hsl(221 83% 53% / 0.15);
-    --shadow-card-hover: 0 12px 40px -8px hsl(221 83% 53% / 0.25);
-    --shadow-button: 0 4px 14px -3px hsl(221 83% 53% / 0.4);
-
-    /* Sidebar */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5% 26%;
-    --sidebar-primary: 221 83% 53%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 210 40% 96%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 221 83% 53%;
-  }
-
-  .dark {
     --background: 222 47% 6%;
     --foreground: 210 40% 98%;
 
@@ -108,11 +182,16 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Montserrat", sans-serif;
   }
 }
 
@@ -127,12 +206,12 @@
 
   .heading-primary {
     @apply text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
   }
 
   .heading-secondary {
     @apply text-xl sm:text-2xl lg:text-3xl font-semibold text-foreground;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
   }
 
   .text-gradient {
@@ -221,8 +300,12 @@
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes slideIn {
