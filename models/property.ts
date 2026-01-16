@@ -19,11 +19,18 @@ export interface Property {
   };
   createdAt: Date;
   updatedAt: Date;
+  locationUrl?: string;
 }
 
-export type PropertyType = 'casa' | 'departamento' | 'lote' | 'local' | 'oficina' | 'terreno';
+export type PropertyType =
+  | "casa"
+  | "departamento"
+  | "lote"
+  | "local"
+  | "oficina"
+  | "terreno";
 
-export type PropertyCategory = 'venta' | 'alquiler' | 'proyecto';
+export type PropertyCategory = "venta" | "alquiler" | "proyecto";
 
 export interface PropertyFilter {
   province?: string;
@@ -40,12 +47,12 @@ export interface Project {
   type: ProjectType;
   province: string;
   images: string[];
-  status: 'en-venta' | 'proximamente' | 'agotado';
+  status: "en-venta" | "proximamente" | "agotado";
   units?: number;
   priceFrom?: number;
 }
 
-export type ProjectType = 'habilitacion-urbana' | 'construccion' | 'desarrollo';
+export type ProjectType = "habilitacion-urbana" | "construccion" | "desarrollo";
 
 export interface Service {
   id: string;
@@ -55,7 +62,7 @@ export interface Service {
 }
 
 export interface ContactFormData {
-  intention: 'comprar' | 'vender' | 'alquilar';
+  intention: "comprar" | "vender" | "alquilar";
   province: string;
   propertyType: PropertyType;
   name: string;

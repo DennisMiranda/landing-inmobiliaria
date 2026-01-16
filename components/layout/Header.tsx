@@ -1,7 +1,7 @@
 
 "use client"
 import Button from '@/components/shared/Button';
-import { Menu, Phone, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const navItems = [
@@ -82,10 +82,6 @@ const Header = () => {
 
           {/* CTA */}
           <div className="hidden sm:flex items-center gap-4">
-            <a href="tel:+51999999999" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-              <Phone className="w-4 h-4" />
-              <span className="hidden md:inline">+51 999 999 999</span>
-            </a>
             <Button
               variant="primary"
               size="sm"

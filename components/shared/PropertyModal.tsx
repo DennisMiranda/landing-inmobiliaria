@@ -1,6 +1,7 @@
 import { Property } from '@/models/property';
-import { X, MapPin, Bed, Bath, Maximize, Check } from 'lucide-react';
+import { Bath, Bed, Check, MapPin, Maximize, X } from 'lucide-react';
 import Button from './Button';
+
 
 interface PropertyModalProps {
   property: Property;
@@ -116,9 +117,18 @@ const PropertyModal = ({ property, onClose }: PropertyModalProps) => {
             )}
 
             {/* Map Placeholder */}
-            <div className="aspect-video bg-muted rounded-lg flex items-center justify-center text-muted-foreground">
-              <MapPin className="w-8 h-8 mr-2" />
-              <span>Mapa de ubicación</span>
+            <div className="w-full aspect-video rounded-lg overflow-hidden">
+              {/* <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+    <TileLayer
+      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
+    <Marker position={position}>
+      <Popup>
+        A pretty CSS3 popup. <br /> Easily customizable.
+      </Popup>
+    </Marker>
+  </MapContainer> */}
             </div>
 
             {/* CTA */}
