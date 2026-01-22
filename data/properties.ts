@@ -1,4 +1,4 @@
-import { Project, Property, Service } from "@/models/property";
+import { currency, Project, Property, Service } from "@/models/property";
 
 export const PROVINCES = [
   "Lima",
@@ -21,26 +21,26 @@ export const PROPERTY_TYPES = [
 ];
 
 export const PRICE_RANGES = [
-  { value: "0-50000", label: "Hasta $50,000", min: 0, max: 50000 },
+  { value: "0-50000", label: "Hasta S/. 50,000", min: 0, max: 50000 },
   {
     value: "50000-100000",
-    label: "$50,000 - $100,000",
+    label: "S/. 50,000 - S/. 100,000",
     min: 50000,
     max: 100000,
   },
   {
     value: "100000-200000",
-    label: "$100,000 - $200,000",
+    label: "S/. 100,000 - S/. 200,000",
     min: 100000,
     max: 200000,
   },
   {
     value: "200000-500000",
-    label: "$200,000 - $500,000",
+    label: "S/. 200,000 - S/. 500,000",
     min: 200000,
     max: 500000,
   },
-  { value: "500000+", label: "Más de $500,000", min: 500000, max: Infinity },
+  { value: "500000+", label: "Más de S/. 500,000", min: 500000, max: Infinity },
 ];
 
 export const propertiesForSale: Property[] = [
@@ -50,6 +50,7 @@ export const propertiesForSale: Property[] = [
     description:
       "Hermosa casa de 3 pisos con acabados de lujo, amplio jardín y piscina. Ubicada en zona residencial exclusiva con seguridad 24/7.",
     price: 450000,
+    currency: currency.PEN,
     province: "Lima",
     district: "La Molina",
     type: "casa",
@@ -73,6 +74,7 @@ export const propertiesForSale: Property[] = [
     description:
       "Espectacular departamento con vista panorámica al mar, acabados premium y áreas comunes de lujo.",
     price: 285000,
+    currency: currency.USD,
     province: "Lima",
     district: "Miraflores",
     type: "departamento",
@@ -94,6 +96,7 @@ export const propertiesForSale: Property[] = [
     description:
       "Terreno ideal para proyecto residencial o comercial. Cuenta con todos los servicios y excelente ubicación.",
     price: 120000,
+    currency: currency.PEN,
     province: "Arequipa",
     type: "lote",
     category: "venta",
@@ -111,6 +114,7 @@ export const propertiesForSale: Property[] = [
     description:
       "Acogedora casa de campo con vista a las montañas, perfecta para escapar de la ciudad.",
     price: 180000,
+    currency: currency.PEN,
     province: "Cusco",
     type: "casa",
     category: "venta",
@@ -130,6 +134,7 @@ export const propertiesForSale: Property[] = [
     description:
       "Moderno departamento en el corazón de Trujillo, cerca de centros comerciales y transporte.",
     price: 95000,
+    currency: currency.PEN,
     province: "Trujillo",
     type: "departamento",
     category: "venta",
@@ -147,6 +152,7 @@ export const propertiesForSale: Property[] = [
     description:
       "Amplio terreno para uso industrial con acceso a carretera principal.",
     price: 350000,
+    currency: currency.PEN,
     province: "Piura",
     type: "terreno",
     category: "venta",
@@ -171,6 +177,7 @@ export const propertiesForRent: Property[] = [
     description:
       "Amplia casa familiar ideal para ejecutivos, completamente amoblada con jardín.",
     price: 2500,
+    currency: currency.PEN,
     province: "Lima",
     district: "San Isidro",
     type: "casa",
@@ -190,6 +197,7 @@ export const propertiesForRent: Property[] = [
     title: "Departamento Ejecutivo",
     description: "Moderno departamento amoblado, perfecto para profesionales.",
     price: 1200,
+    currency: currency.PEN,
     province: "Lima",
     district: "Miraflores",
     type: "departamento",
@@ -210,6 +218,7 @@ export const propertiesForRent: Property[] = [
     description:
       "Excelente local en zona comercial de alto tráfico, ideal para retail.",
     price: 3500,
+    currency: currency.PEN,
     province: "Lima",
     district: "Centro de Lima",
     type: "local",
@@ -228,6 +237,7 @@ export const propertiesForRent: Property[] = [
     description:
       "Departamento cómodo y económico en zona tranquila de Arequipa.",
     price: 600,
+    currency: currency.PEN,
     province: "Arequipa",
     type: "departamento",
     category: "alquiler",

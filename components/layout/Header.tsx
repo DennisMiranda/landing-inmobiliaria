@@ -1,137 +1,86 @@
+import {
+  Briefcase,
+  Building2,
+  Home,
+  Key,
+  Phone,
+} from "lucide-react";
 
-"use client"
-import Button from '@/components/shared/Button';
-import { Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+/*  1. ARREGLO BASE */
 
 const navItems = [
-  { label: 'Inicio', href: '#' },
-  { label: 'Venta', href: '#propiedades-venta' },
-  { label: 'Proyectos', href: '#proyectos' },
-  { label: 'Alquiler', href: '#alquiler' },
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Contacto', href: '#contacto' },
+  { id: "home", label: "Inicio", href: "#", icon: Home },
+  { id: "sale", label: "Propiedades", href: "#propiedades-venta", icon: Building2 },
+  { id: "rent", label: "Alquiler", href: "#propiedades-alquiler", icon: Key },
+  { id: "services", label: "Servicios", href: "#servicios", icon: Briefcase },
+  { id: "contact", label: "Contacto", href: "#contacto", icon: Phone },
 ];
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+/* 2. ORDEN POR BREAKPOINT */
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+// Contacto al centro
+const mobileOrder = ["home", "sale", "contact", "rent", "services"];
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+const mobileMenu = mobileOrder.map(
+  (id) => navItems.find((item) => item.id === id)!
+);
 
-  const handleNavClick = (href: string) => {
-    setIsOpen(false);
-    if (href === '#') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+// Contacto a la derecha
+const desktopMenu = navItems;
 
+/* 3. COMPONENTE */
+
+export default function NavBar() {
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-md shadow-sm'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="section-container">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick('#');
-            }}
-            className="flex items-center gap-2"
-          >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-dark to-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg font-heading">A</span>
-            </div>
-            <span className="font-bold text-xl text-foreground font-heading hidden sm:block">
-              Amira
-            </span>
-          </a>
+    <>
+      {/* NAV WEB */}
+      <header className="hidden md:flex fixed top-0 left-0 right-0 h-16 bg-white border-b z-50">
+        <div className="max-w-7xl mx-auto w-full flex items-center justify-end px-6 gap-8">
+          {desktopMenu.map((item) => {
+            const Icon = item.icon;
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
+            return (
               <a
-                key={item.label}
+                key={item.id}
                 href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href);
-                }}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition"
               >
-                {item.label}
+                <Icon size={18} />
+                <span>{item.label}</span>
               </a>
-            ))}
-          </nav>
-
-          {/* CTA */}
-          <div className="hidden sm:flex items-center gap-4">
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => handleNavClick('#contacto')}
-            >
-              Contáctanos
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-muted transition-colors"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+            );
+          })}
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg">
-          <nav className="section-container py-4 space-y-1">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href);
-                }}
-                className="block px-4 py-3 text-foreground hover:bg-muted rounded-lg transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
-            <div className="pt-4 px-4">
-              <Button
-                variant="primary"
-                fullWidth
-                onClick={() => handleNavClick('#contacto')}
-              >
-                Contáctanos
-              </Button>
-            </div>
-          </nav>
-        </div>
-      )}
-    </header>
+      {/* NAV MÓVIL */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t z-50">
+        <ul className="flex items-center justify-between px-2 py-2">
+          {mobileMenu.map((item) => {
+            const Icon = item.icon;
+            const isContact = item.id === "contact";
+
+            return (
+              <li key={item.id} className="flex-1">
+                <a
+                  href={item.href}
+                  className={`
+                    flex flex-col items-center justify-center gap-1 py-1
+                    ${isContact ? "text-blue-600" : "text-gray-500"}
+                  `}
+                >
+                  <Icon
+                    size={22}
+                    className={isContact ? "stroke-[2.2]" : "stroke-[1.8]"}
+                  />
+                  {/* Accesibilidad */}
+                  <span className="sr-only">{item.label}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </>
   );
-};
-
-export default Header;
+}

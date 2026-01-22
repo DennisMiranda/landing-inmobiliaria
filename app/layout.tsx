@@ -1,5 +1,6 @@
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
+import FloatingWhatsApp from "@/components/shared/FloatingWhatsApp";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -32,6 +33,7 @@ export default function RootLayout({
         <div className="min-h-screen bg-background">
       <Header />
         {children}
+        <FloatingWhatsApp />
         <Footer />
       </div>
       </body>

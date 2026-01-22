@@ -1,16 +1,68 @@
-import { Property } from '@/models/property';
-import { Bath, Bed, Check, MapPin, Maximize, X } from 'lucide-react';
-import Button from './Button';
+"use client";
+import { Property } from "@/models/property";
+import { LatLngExpression } from "leaflet";
+import { Bath, Bed, Check, MapPin, Maximize, X } from "lucide-react";
+import Button from "./Button";
 
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
+const Map = dynamic(() => import("./Map"), { ssr: false });
 
 interface PropertyModalProps {
   property: Property;
   onClose: () => void;
 }
 
+const extractCoordsFromUrl = (url: string): LatLngExpression | null => {
+  try {
+    // Try to extract coordinates from URL path (new format)
+    const pathMatch = url.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+    if (pathMatch) {
+      const [, lat, lng] = pathMatch;
+      return [parseFloat(lat), parseFloat(lng)];
+    }
+
+    // Try to extract from query parameters (old format)
+    const urlObj = new URL(url);
+    const ll = urlObj.searchParams.get("ll");
+    if (ll) {
+      const [lat, lng] = ll.split(",").map(Number);
+      if (!isNaN(lat) && !isNaN(lng)) {
+        return [lat, lng];
+      }
+    }
+
+    // Try to extract from 3d param (3D view)
+    const dParam = urlObj.searchParams.get("3d");
+    if (dParam) {
+      const coords = dParam.split("!").find((p) => p.startsWith("1d"));
+      if (coords) {
+        const [, lat, lng] = coords.match(/1d([\d.-]+)!2d([\d.-]+)/) || [];
+        if (lat && lng) {
+          return [parseFloat(lat), parseFloat(lng)];
+        }
+      }
+    }
+
+    return null;
+  } catch (e) {
+    console.error("Error parsing coordinates from URL:", e);
+    return null;
+  }
+};
+
 const PropertyModal = ({ property, onClose }: PropertyModalProps) => {
+  // Extract coordinates from locationUrl and useMemo to avoid recalculating
+  const center = useMemo(() => {
+    if (property.locationUrl) {
+      const coords = extractCoordsFromUrl(property.locationUrl);
+      return coords;
+    }
+    return null;
+  }, [property.locationUrl]);
+
   const formatPrice = (price: number, category: string) => {
-    if (category === 'alquiler') {
+    if (category === "alquiler") {
       return `$${price.toLocaleString()}/mes`;
     }
     return `$${price.toLocaleString()}`;
@@ -19,10 +71,12 @@ const PropertyModal = ({ property, onClose }: PropertyModalProps) => {
   const scrollToContact = () => {
     onClose();
     setTimeout(() => {
-      const element = document.getElementById('contacto');
-      element?.scrollIntoView({ behavior: 'smooth' });
+      const element = document.getElementById("contacto");
+      element?.scrollIntoView({ behavior: "smooth" });
     }, 300);
   };
+
+  // Coordinates are now derived directly from props using useMemo
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
@@ -69,7 +123,9 @@ const PropertyModal = ({ property, onClose }: PropertyModalProps) => {
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="w-5 h-5 text-primary" />
               <span>
-                {property.district ? `${property.district}, ${property.province}` : property.province}
+                {property.district
+                  ? `${property.district}, ${property.province}`
+                  : property.province}
               </span>
             </div>
 
@@ -95,7 +151,9 @@ const PropertyModal = ({ property, onClose }: PropertyModalProps) => {
 
             {/* Description */}
             <div>
-              <h4 className="font-semibold text-foreground mb-2">Descripción</h4>
+              <h4 className="font-semibold text-foreground mb-2">
+                Descripción
+              </h4>
               <p className="text-muted-foreground leading-relaxed">
                 {property.description}
               </p>
@@ -104,10 +162,15 @@ const PropertyModal = ({ property, onClose }: PropertyModalProps) => {
             {/* Amenities */}
             {property.features && property.features.length > 0 && (
               <div>
-                <h4 className="font-semibold text-foreground mb-2">Características</h4>
+                <h4 className="font-semibold text-foreground mb-2">
+                  Características
+                </h4>
                 <div className="grid grid-cols-2 gap-2">
                   {property.features.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-2 text-sm">
+                    <div
+                      key={index}
+                      className="flex items-center gap-2 text-sm"
+                    >
                       <Check className="w-4 h-4 text-primary" />
                       <span>{feature}</span>
                     </div>
@@ -117,19 +180,11 @@ const PropertyModal = ({ property, onClose }: PropertyModalProps) => {
             )}
 
             {/* Map Placeholder */}
-            <div className="w-full aspect-video rounded-lg overflow-hidden">
-              {/* <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-    <TileLayer
-      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    />
-    <Marker position={position}>
-      <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
-      </Popup>
-    </Marker>
-  </MapContainer> */}
-            </div>
+            {center && (
+              <div className="aspect-video bg-muted rounded-lg flex items-center justify-center text-muted-foreground">
+                <Map center={center} />
+              </div>
+            )}
 
             {/* CTA */}
             <Button variant="hero" fullWidth onClick={scrollToContact}>

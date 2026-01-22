@@ -1,11 +1,11 @@
-import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Header from '@/components/layout/Header';
+import ContactSection from '@/components/sections/ContactSection';
 import HeroSection from '@/components/sections/HeroSection';
 import PropertiesSection from '@/components/sections/PropertiesSection';
-import ProjectsSection from '@/components/sections/ProjectsSection';
 import RentalsSection from '@/components/sections/RentalsSection';
 import ServicesSection from '@/components/sections/ServicesSection';
-import ContactSection from '@/components/sections/ContactSection';
+import FloatingWhatsApp from '@/components/shared/FloatingWhatsApp';
 
 const Index = () => {
   return (
@@ -14,10 +14,11 @@ const Index = () => {
       <main className="pt-16 sm:pt-20">
         <HeroSection />
         <PropertiesSection />
-        <ProjectsSection />
         <RentalsSection />
         <ServicesSection />
         <ContactSection />
+        <FloatingWhatsApp />
+
       </main>
       <Footer />
     </div>

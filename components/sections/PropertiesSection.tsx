@@ -1,5 +1,4 @@
 "use client"
-import FilterBar from '@/components/shared/FilterBar';
 import PropertyCard from '@/components/shared/PropertyCard';
 import PropertyModal from '@/components/shared/PropertyModal';
 import { propertiesForSale } from '@/data/properties';
@@ -24,7 +23,7 @@ const PropertiesSection = () => {
 
   return (
     <section
-      id="propiedades-venta"
+      id="venta"
       ref={sectionRef}
       className="section-padding bg-muted/30"
     >
@@ -37,8 +36,6 @@ const PropertiesSection = () => {
           </p>
         </div>
 
-        {/* Filters */}
-        <FilterBar onFilterChange={setFilters} />
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
