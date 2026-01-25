@@ -6,7 +6,7 @@ import ServicesSection from "@/components/sections/ServicesSection";
 
 export default function Home() {
   return (
-      <main className="pt-16 sm:pt-20">
+      <main className="md:pt-16">
         <HeroSection />
         <PropertiesSection />
         <RentalsSection />

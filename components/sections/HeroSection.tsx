@@ -1,73 +1,246 @@
-
-"use client"
-import Button from '@/components/shared/Button';
-import { useRef } from 'react';
+"use client";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { PRICE_RANGES, PROPERTY_TYPES, PROVINCES } from "@/data/properties";
+import { motion } from "framer-motion";
+import { Search } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 
 const HeroSection = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const [searchType, setSearchType] = useState<
+    "comprar" | "alquilar" | "vender"
+  >("comprar");
+  const [location, setLocation] = useState("Tacna");
+  const [propertyType, setPropertyType] = useState("casa");
+  const [priceRange, setPriceRange] = useState("0-50000");
 
-  const scrollToProperties = () => {
-    const element = document.getElementById('propiedades-venta');
-    element?.scrollIntoView({ behavior: 'smooth' });
+  const handleSearch = () => {
+    // Apply filter options - for now just scroll to properties
+    const element = document.getElementById("propiedades-venta");
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const searchBarVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        delay: 0.4,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut" as const,
+      },
+    },
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.2,
+      },
+    },
+    tap: {
+      scale: 0.95,
+    },
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-[50vh] sm:min-h-[60vh] flex items-center justify-center bg-gradient-to-b from-primary/5 via-background to-background overflow-hidden"
-    >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 left-0 w-72 h-72 bg-primary/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-light/15 rounded-full blur-3xl translate-x-1/4 translate-y-1/4" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 w-full">
+        <Image
+          src="/hero.jpeg"
+          alt="Hero background"
+          fill
+          className="w-full object-cover"
+          priority
+        />
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
       </div>
 
       {/* Content */}
-      <div
-        ref={contentRef}
-        className="relative section-container text-center py-12 sm:py-16 space-y-6"
+      <motion.div
+        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-          <span className="w-2 h-2 rounded-full bg-primary animate-pulse-soft" />
-          <span className="text-sm font-medium text-primary">Tu inmobiliaria de confianza</span>
-        </div>
+        {/* Main Title */}
+        <motion.div className="mb-12" variants={titleVariants}>
+          <h1 className="flex flex-col items-start text-5xl sm:text-6xl lg:text-8xl font-bold font-heading mb-4">
+            <span className="text-primary drop-shadow-lg">Encuentra</span>
+            <span className="text-white drop-shadow-lg">tu nuevo hogar</span>
+          </h1>
+        </motion.div>
 
-        {/* Brand Name */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground font-heading">
-          <span className="text-gradient">Amira</span>{' '}
-          <span>Inmobiliaria</span>
-        </h1>
-
-        {/* Slogan */}
-        <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-lg mx-auto font-medium">
-          Encuentra tu nuevo hogar
-        </p>
-
-        {/* CTA */}
-        <div className="pt-4">
-          <Button variant="hero" size="lg" onClick={scrollToProperties}>
-            Ver propiedades
-          </Button>
-        </div>
-
-        {/* Stats */}
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-12 pt-8 text-center">
-          <div>
-            <p className="text-2xl sm:text-3xl font-bold text-primary font-heading">500+</p>
-            <p className="text-sm text-muted-foreground">Propiedades</p>
+        {/* Search Bar */}
+        <motion.div
+          className="p-6 sm:p-8 max-w-4xl mx-auto"
+          variants={searchBarVariants}
+        >
+          {/* Type Buttons */}
+          <div className="w-max mx-auto flex gap-1">
+            <motion.button
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+              onClick={() => setSearchType("comprar")}
+              className={`flex-1 px-4 md:px-6 py-3 rounded-t-lg cursor-pointer font-semibold transition-all duration-300 ${
+                searchType === "comprar"
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              Comprar
+            </motion.button>
+            <motion.button
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+              onClick={() => setSearchType("alquilar")}
+              className={`flex-1 px-4 md:px-6 py-3 rounded-t-lg cursor-pointer font-semibold transition-all duration-300 ${
+                searchType === "alquilar"
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              Alquilar
+            </motion.button>
+            <motion.button
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+              onClick={() => {
+                setSearchType("vender");
+                const element = document.getElementById("contacto");
+                element?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className={`flex-1 px-4 md:px-6 py-3 rounded-t-lg cursor-pointer font-semibold transition-all duration-300 ${
+                searchType === "vender"
+                  ? "bg-primary text-white shadow-lg"
+                  : "bg-white text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              Vender
+            </motion.button>
           </div>
-          <div>
-            <p className="text-2xl sm:text-3xl font-bold text-primary font-heading">1000+</p>
-            <p className="text-sm text-muted-foreground">Clientes felices</p>
+
+          {/* Search Fields */}
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 grid grid-cols-1 md:grid-cols-4 gap-4">
+            {/* Location */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Ubicación
+              </label>
+              <Select value={location} onValueChange={setLocation}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Seleccionar ubicación" />
+                </SelectTrigger>
+                <SelectContent>
+                  {PROVINCES.map((province) => (
+                    <SelectItem key={province} value={province}>
+                      {province}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Property Type */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Tipo de propiedad
+              </label>
+              <Select value={propertyType} onValueChange={setPropertyType}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Seleccionar tipo" />
+                </SelectTrigger>
+                <SelectContent>
+                  {PROPERTY_TYPES.map((type) => (
+                    <SelectItem key={type.value} value={type.value}>
+                      {type.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Price Range */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Precio
+              </label>
+              <Select value={priceRange} onValueChange={setPriceRange}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Seleccionar precio" />
+                </SelectTrigger>
+                <SelectContent>
+                  {PRICE_RANGES.map((range) => (
+                    <SelectItem key={range.value} value={range.value}>
+                      {range.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Search Button */}
+            <div className="flex items-end">
+              <motion.button
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+                onClick={handleSearch}
+                className="w-full bg-primary text-white px-6 py-3 cursor-pointer rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <Search className="w-5 h-5" />
+                Buscar
+              </motion.button>
+            </div>
           </div>
-          <div>
-            <p className="text-2xl sm:text-3xl font-bold text-primary font-heading">10+</p>
-            <p className="text-sm text-muted-foreground">Años de experiencia</p>
-          </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

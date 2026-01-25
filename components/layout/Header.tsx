@@ -1,16 +1,16 @@
-import {
-  Briefcase,
-  Building2,
-  Home,
-  Key,
-  Phone,
-} from "lucide-react";
+import { Briefcase, Building2, Home, Key, Phone } from "lucide-react";
+import Image from "next/image";
 
 /*  1. ARREGLO BASE */
 
 const navItems = [
   { id: "home", label: "Inicio", href: "#", icon: Home },
-  { id: "sale", label: "Propiedades", href: "#propiedades-venta", icon: Building2 },
+  {
+    id: "sale",
+    label: "Propiedades",
+    href: "#propiedades-venta",
+    icon: Building2,
+  },
   { id: "rent", label: "Alquiler", href: "#propiedades-alquiler", icon: Key },
   { id: "services", label: "Servicios", href: "#servicios", icon: Briefcase },
   { id: "contact", label: "Contacto", href: "#contacto", icon: Phone },
@@ -35,7 +35,11 @@ export default function NavBar() {
     <>
       {/* NAV WEB */}
       <header className="hidden md:flex fixed top-0 left-0 right-0 h-16 bg-white border-b z-50">
-        <div className="max-w-7xl mx-auto w-full flex items-center justify-end px-6 gap-8">
+        <div className="max-w-7xl mx-auto w-full flex items-center justify-between px-6 gap-8">
+          <a href="#" className="flex items-center gap-2">
+            <Image src="/logo.jpeg" alt="Logo" width={40} height={40} />
+          </a>
+          <div className="flex-1"></div>
           {desktopMenu.map((item) => {
             const Icon = item.icon;
 
@@ -52,6 +56,14 @@ export default function NavBar() {
           })}
         </div>
       </header>
+
+      {/* Floating Logo */}
+      <a
+        href="#"
+        className="md:hidden fixed top-6 left-6 z-50 flex items-center gap-2 bg-white/10 backdrop-blur-sm p-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+      >
+        <Image src="/logo.jpeg" alt="Logo" width={40} height={40} />
+      </a>
 
       {/* NAV MÓVIL */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t z-50">
