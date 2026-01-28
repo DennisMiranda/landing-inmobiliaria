@@ -1,28 +1,33 @@
+"use client";
+import Button from "@/components/shared/Button";
+import PropertyCard from "@/components/shared/PropertyCard";
+import PropertyModal from "@/components/shared/PropertyModal";
+import { propertiesForRent } from "@/data/properties";
+import { Property } from "@/models/property";
+import { useMemo, useRef, useState } from "react";
 
-"use client"
-import FilterBar from '@/components/shared/FilterBar';
-import PropertyCard from '@/components/shared/PropertyCard';
-import PropertyModal from '@/components/shared/PropertyModal';
-import { propertiesForRent } from '@/data/properties';
-import { Property, PropertyFilter } from '@/models/property';
-import { useMemo, useRef, useState } from 'react';
+interface RentalsSectionProps {
+  // No props needed - always shows preview
+}
 
 const RentalsSection = () => {
-  const [filters, setFilters] = useState<PropertyFilter>({});
-  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
+    null
+  );
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
 
   const filteredProperties = useMemo(() => {
-    return propertiesForRent.filter(property => {
-      if (filters.province && property.province !== filters.province) return false;
-      if (filters.type && property.type !== filters.type) return false;
-      if (filters.minPrice && property.price < filters.minPrice) return false;
-      if (filters.maxPrice && property.price > filters.maxPrice) return false;
+    return propertiesForRent.filter((property) => {
+      // No filtering for preview section - show all rental properties
       return true;
     });
-  }, [filters]);
-return (
+  }, []);
+
+  // Show only first 6 properties
+  const displayProperties = filteredProperties.slice(0, 6);
+
+  return (
     <section
       id="alquiler"
       ref={sectionRef}
@@ -37,12 +42,9 @@ return (
           </p>
         </div>
 
-        {/* Filters */}
-        <FilterBar onFilterChange={setFilters} />
-
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {filteredProperties.map((property, index) => (
+          {displayProperties.map((property, index) => (
             <div
               key={property.id}
               className="animate-fade-up"
@@ -56,11 +58,25 @@ return (
           ))}
         </div>
 
+        {/* View More Button */}
+        {propertiesForRent.length > 6 && (
+          <div className="text-center pt-4">
+            <Button
+              variant="outline"
+              onClick={() => {
+                window.location.href = "/properties?type=rent";
+              }}
+            >
+              Ver más ({propertiesForRent.length - 6} más)
+            </Button>
+          </div>
+        )}
+
         {/* Empty State */}
-        {filteredProperties.length === 0 && (
+        {displayProperties.length === 0 && (
           <div className="text-center py-12">
             <p className="text-muted-foreground">
-              No se encontraron propiedades con los filtros seleccionados.
+              No hay propiedades en alquiler disponibles.
             </p>
           </div>
         )}

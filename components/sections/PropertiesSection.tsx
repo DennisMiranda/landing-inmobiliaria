@@ -1,25 +1,49 @@
-"use client"
-import PropertyCard from '@/components/shared/PropertyCard';
-import PropertyModal from '@/components/shared/PropertyModal';
-import { propertiesForSale } from '@/data/properties';
-import { Property, PropertyFilter } from '@/models/property';
-import { useMemo, useRef, useState } from 'react';
+"use client";
+import Button from "@/components/shared/Button";
+import PropertyCard from "@/components/shared/PropertyCard";
+import PropertyModal from "@/components/shared/PropertyModal";
+import { propertiesForSale } from "@/data/properties";
+import { Property, PropertyFilter } from "@/models/property";
+import { useMemo, useRef, useState } from "react";
 
-const PropertiesSection = () => {
-  const [filters, setFilters] = useState<PropertyFilter>({});
-  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
+interface PropertiesSectionProps {
+  searchFilters?: PropertyFilter;
+}
+
+const PropertiesSection = ({ searchFilters }: PropertiesSectionProps) => {
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
+    null
+  );
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
 
   const filteredProperties = useMemo(() => {
-    return propertiesForSale.filter(property => {
-      if (filters.province && property.province !== filters.province) return false;
-      if (filters.type && property.type !== filters.type) return false;
-      if (filters.minPrice && property.price < filters.minPrice) return false;
-      if (filters.maxPrice && property.price > filters.maxPrice) return false;
+    return propertiesForSale.filter((property) => {
+      // Apply search filters if provided
+      if (searchFilters) {
+        if (
+          searchFilters.province &&
+          property.province !== searchFilters.province
+        )
+          return false;
+        if (searchFilters.type && property.type !== searchFilters.type)
+          return false;
+        if (searchFilters.minPrice && property.price < searchFilters.minPrice)
+          return false;
+        if (searchFilters.maxPrice && property.price > searchFilters.maxPrice)
+          return false;
+        if (
+          searchFilters.category &&
+          property.category !== searchFilters.category
+        )
+          return false;
+      }
       return true;
     });
-  }, [filters]);
+  }, [searchFilters]);
+
+  // Show only first 6 properties
+  const displayProperties = filteredProperties.slice(0, 6);
 
   return (
     <section
@@ -36,10 +60,9 @@ const PropertiesSection = () => {
           </p>
         </div>
 
-
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {filteredProperties.map((property, index) => (
+          {displayProperties.map((property, index) => (
             <div
               key={property.id}
               className="animate-fade-up"
@@ -53,8 +76,22 @@ const PropertiesSection = () => {
           ))}
         </div>
 
+        {/* View More Button */}
+        {propertiesForSale.length > 6 && (
+          <div className="text-center pt-4">
+            <Button
+              variant="outline"
+              onClick={() => {
+                window.location.href = "/properties?type=sale";
+              }}
+            >
+              Ver más ({propertiesForSale.length - 6} más)
+            </Button>
+          </div>
+        )}
+
         {/* Empty State */}
-        {filteredProperties.length === 0 && (
+        {displayProperties.length === 0 && (
           <div className="text-center py-12">
             <p className="text-muted-foreground">
               No se encontraron propiedades con los filtros seleccionados.

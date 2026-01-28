@@ -7,23 +7,44 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { PRICE_RANGES, PROPERTY_TYPES, PROVINCES } from "@/data/properties";
+import { PropertyFilter } from "@/models/property";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onSearch?: (
+    filters: PropertyFilter & { searchType: "comprar" | "alquilar" }
+  ) => void;
+}
+
+const HeroSection = ({ onSearch }: HeroSectionProps) => {
   const [searchType, setSearchType] = useState<
     "comprar" | "alquilar" | "vender"
   >("comprar");
   const [location, setLocation] = useState("Tacna");
   const [propertyType, setPropertyType] = useState("casa");
-  const [priceRange, setPriceRange] = useState("0-50000");
+  const [selectedPriceRange, setSelectedPriceRange] = useState("0-50000");
 
   const handleSearch = () => {
-    // Apply filter options - for now just scroll to properties
-    const element = document.getElementById("propiedades-venta");
-    element?.scrollIntoView({ behavior: "smooth" });
+    // Parse price range
+    const priceRange = PRICE_RANGES.find(
+      (range) => range.value === selectedPriceRange
+    );
+
+    const filters: PropertyFilter & { searchType: "comprar" | "alquilar" } = {
+      searchType: searchType as "comprar" | "alquilar",
+      province: location || undefined,
+      type: (propertyType as any) || undefined,
+      minPrice: priceRange?.min,
+      maxPrice: priceRange?.max,
+      category: searchType === "comprar" ? "venta" : "alquiler",
+    };
+
+    if (onSearch) {
+      onSearch(filters);
+    }
   };
 
   // Animation variants
@@ -211,7 +232,10 @@ const HeroSection = () => {
               <label className="text-sm font-medium text-gray-700">
                 Precio
               </label>
-              <Select value={priceRange} onValueChange={setPriceRange}>
+              <Select
+                value={selectedPriceRange}
+                onValueChange={setSelectedPriceRange}
+              >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Seleccionar precio" />
                 </SelectTrigger>
