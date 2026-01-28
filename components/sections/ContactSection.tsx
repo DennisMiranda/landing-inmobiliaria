@@ -1,24 +1,43 @@
-"use client"
-import Button from '@/components/shared/Button';
-import { PROPERTY_TYPES, PROVINCES } from '@/data/properties';
-import { ContactFormData, PropertyType } from '@/models/property';
-import { ArrowLeft, ArrowRight, Check, Send } from 'lucide-react';
-import { useRef, useState } from 'react';
+"use client";
+import Button from "@/components/shared/Button";
+import { PROPERTY_TYPES, PROVINCES } from "@/data/properties";
+import { ContactFormData, PropertyType } from "@/models/property";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  HandCoins,
+  HousePlus,
+  Key,
+  Send,
+} from "lucide-react";
+import { useRef, useState } from "react";
 
-
-type StepKey = 'intention' | 'province' | 'propertyType' | 'contact';
+type StepKey = "intention" | "province" | "propertyType" | "contact";
 
 const steps: { key: StepKey; title: string }[] = [
-  { key: 'intention', title: '¿Qué deseas hacer?' },
-  { key: 'province', title: '¿En qué provincia?' },
-  { key: 'propertyType', title: '¿Qué tipo de propiedad?' },
-  { key: 'contact', title: 'Tus datos de contacto' },
+  { key: "intention", title: "¿Qué deseas hacer?" },
+  { key: "province", title: "¿En qué provincia?" },
+  { key: "propertyType", title: "¿Qué tipo de propiedad?" },
+  { key: "contact", title: "Tus datos de contacto" },
 ];
 
 const intentions = [
-  { value: 'comprar', label: 'Comprar', icon: '🏠' },
-  { value: 'vender', label: 'Vender', icon: '💰' },
-  { value: 'alquilar', label: 'Alquilar', icon: '🔑' },
+  {
+    value: "comprar",
+    label: "Comprar",
+    icon: <HousePlus className="w-6 h-6 text-primary" />,
+  },
+  {
+    value: "vender",
+    label: "Vender",
+    icon: <HandCoins className="w-6 h-6 text-primary" />,
+  },
+  {
+    value: "alquilar",
+    label: "Alquilar",
+    icon: <Key className="w-6 h-6 text-primary" />,
+  },
 ];
 
 const ContactSection = () => {
@@ -44,20 +63,20 @@ const ContactSection = () => {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     setIsSubmitting(false);
     setIsSubmitted(true);
   };
 
   const canProceed = () => {
     switch (steps[currentStep].key) {
-      case 'intention':
+      case "intention":
         return !!formData.intention;
-      case 'province':
+      case "province":
         return !!formData.province;
-      case 'propertyType':
+      case "propertyType":
         return !!formData.propertyType;
-      case 'contact':
+      case "contact":
         return formData.name && formData.phone && formData.email;
       default:
         return false;
@@ -77,7 +96,8 @@ const ContactSection = () => {
           </div>
           <h2 className="heading-primary">¡Gracias por contactarnos!</h2>
           <p className="text-muted-foreground">
-            Hemos recibido tu mensaje. Un asesor se pondrá en contacto contigo muy pronto.
+            Hemos recibido tu mensaje. Un asesor se pondrá en contacto contigo
+            muy pronto.
           </p>
           <Button
             variant="outline"
@@ -116,16 +136,20 @@ const ContactSection = () => {
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${
                   index <= currentStep
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-muted text-muted-foreground'
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
                 }`}
               >
-                {index < currentStep ? <Check className="w-4 h-4" /> : index + 1}
+                {index < currentStep ? (
+                  <Check className="w-4 h-4" />
+                ) : (
+                  index + 1
+                )}
               </div>
               {index < steps.length - 1 && (
                 <div
                   className={`w-8 sm:w-12 h-1 mx-1 rounded transition-colors ${
-                    index < currentStep ? 'bg-primary' : 'bg-muted'
+                    index < currentStep ? "bg-primary" : "bg-muted"
                   }`}
                 />
               )}
@@ -144,14 +168,19 @@ const ContactSection = () => {
             {/* Step 1: Intention */}
             {currentStep === 0 && (
               <div className="grid grid-cols-1 gap-3">
-                {intentions.map(option => (
+                {intentions.map((option) => (
                   <button
                     key={option.value}
-                    onClick={() => setFormData({ ...formData, intention: option.value as ContactFormData['intention'] })}
+                    onClick={() =>
+                      setFormData({
+                        ...formData,
+                        intention: option.value as ContactFormData["intention"],
+                      })
+                    }
                     className={`flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${
                       formData.intention === option.value
-                        ? 'border-primary bg-primary/5'
-                        : 'border-border hover:border-primary/50'
+                        ? "border-primary bg-primary/5"
+                        : "border-border hover:border-primary/50"
                     }`}
                   >
                     <span className="text-2xl">{option.icon}</span>
@@ -167,14 +196,14 @@ const ContactSection = () => {
             {/* Step 2: Province */}
             {currentStep === 1 && (
               <div className="grid grid-cols-2 gap-3">
-                {PROVINCES.map(province => (
+                {PROVINCES.map((province) => (
                   <button
                     key={province}
                     onClick={() => setFormData({ ...formData, province })}
                     className={`p-4 rounded-xl border-2 transition-all text-center ${
                       formData.province === province
-                        ? 'border-primary bg-primary/5'
-                        : 'border-border hover:border-primary/50'
+                        ? "border-primary bg-primary/5"
+                        : "border-border hover:border-primary/50"
                     }`}
                   >
                     <span className="font-medium">{province}</span>
@@ -186,14 +215,19 @@ const ContactSection = () => {
             {/* Step 3: Property Type */}
             {currentStep === 2 && (
               <div className="grid grid-cols-2 gap-3">
-                {PROPERTY_TYPES.map(type => (
+                {PROPERTY_TYPES.map((type) => (
                   <button
                     key={type.value}
-                    onClick={() => setFormData({ ...formData, propertyType: type.value as PropertyType })}
+                    onClick={() =>
+                      setFormData({
+                        ...formData,
+                        propertyType: type.value as PropertyType,
+                      })
+                    }
                     className={`p-4 rounded-xl border-2 transition-all text-center ${
                       formData.propertyType === type.value
-                        ? 'border-primary bg-primary/5'
-                        : 'border-border hover:border-primary/50'
+                        ? "border-primary bg-primary/5"
+                        : "border-border hover:border-primary/50"
                     }`}
                   >
                     <span className="font-medium">{type.label}</span>
@@ -211,8 +245,10 @@ const ContactSection = () => {
                   </label>
                   <input
                     type="text"
-                    value={formData.name || ''}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    value={formData.name || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     className="input-field"
                     placeholder="Tu nombre"
                   />
@@ -223,8 +259,10 @@ const ContactSection = () => {
                   </label>
                   <input
                     type="tel"
-                    value={formData.phone || ''}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    value={formData.phone || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
                     className="input-field"
                     placeholder="+51 999 999 999"
                   />
@@ -235,8 +273,10 @@ const ContactSection = () => {
                   </label>
                   <input
                     type="email"
-                    value={formData.email || ''}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    value={formData.email || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     className="input-field"
                     placeholder="tu@email.com"
                   />
@@ -246,8 +286,10 @@ const ContactSection = () => {
                     Mensaje (opcional)
                   </label>
                   <textarea
-                    value={formData.message || ''}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    value={formData.message || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
                     className="input-field min-h-[100px] resize-none"
                     placeholder="Cuéntanos más sobre lo que buscas..."
                   />
@@ -259,7 +301,11 @@ const ContactSection = () => {
           {/* Navigation */}
           <div className="flex gap-3 mt-6">
             {currentStep > 0 && (
-              <Button variant="outline" onClick={handleBack} className="flex-1 sm:flex-none">
+              <Button
+                variant="outline"
+                onClick={handleBack}
+                className="flex-1 sm:flex-none"
+              >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Atrás
               </Button>
@@ -282,7 +328,7 @@ const ContactSection = () => {
                 className="flex-1"
               >
                 {isSubmitting ? (
-                  'Enviando...'
+                  "Enviando..."
                 ) : (
                   <>
                     Enviar mensaje
