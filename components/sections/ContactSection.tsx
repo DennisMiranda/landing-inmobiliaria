@@ -264,7 +264,7 @@ const ContactSection = () => {
                       setFormData({ ...formData, phone: e.target.value })
                     }
                     className="input-field"
-                    placeholder="+51 999 999 999"
+                    placeholder="+51 982 743 773"
                   />
                 </div>
                 <div>

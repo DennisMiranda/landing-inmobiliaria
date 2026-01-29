@@ -1,11 +1,7 @@
 "use client";
 import PropertiesResultsSection from "@/components/sections/PropertiesResultsSection.tsx";
 import Button from "@/components/shared/Button";
-import {
-  PRICE_RANGES_FOR_SALE,
-  PROPERTY_TYPES,
-  PROVINCES,
-} from "@/data/properties";
+import { PRICE_RANGES_FOR_SALE } from "@/data/properties";
 import { PropertyFilter } from "@/models/property";
 import { ArrowLeft, DollarSign, Home, MapPin, Tag, X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -165,85 +161,6 @@ export default function SearchResultsPage() {
             </div>
 
             {/* Search Form */}
-            <div className="bg-background/50 backdrop-blur-sm rounded-2xl border p-6 space-y-4">
-              {/* Search Type */}
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  onClick={() => setSearchType("comprar")}
-                  className={`p-4 rounded-xl border-2 transition-all text-center ${
-                    searchType === "comprar"
-                      ? "border-primary bg-primary/5"
-                      : "border-border hover:border-primary/50"
-                  }`}
-                >
-                  <div className="flex flex-col items-center gap-2">
-                    <Home className="w-6 h-6 text-primary" />
-                    <span className="font-medium">Comprar</span>
-                  </div>
-                </button>
-                <button
-                  onClick={() => setSearchType("alquilar")}
-                  className={`p-4 rounded-xl border-2 transition-all text-center ${
-                    searchType === "alquilar"
-                      ? "border-primary bg-primary/5"
-                      : "border-border hover:border-primary/50"
-                  }`}
-                >
-                  <div className="flex flex-col items-center gap-2">
-                    <Tag className="w-6 h-6 text-primary" />
-                    <span className="font-medium">Alquilar</span>
-                  </div>
-                </button>
-              </div>
-
-              {/* Location and Property Type */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <select
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  className="input-field"
-                >
-                  <option value="">Todas las provincias</option>
-                  {PROVINCES.map((province) => (
-                    <option key={province} value={province}>
-                      {province}
-                    </option>
-                  ))}
-                </select>
-
-                <select
-                  value={propertyType}
-                  onChange={(e) => setPropertyType(e.target.value)}
-                  className="input-field"
-                >
-                  <option value="">Todos los tipos</option>
-                  {PROPERTY_TYPES.map((type) => (
-                    <option key={type.value} value={type.value}>
-                      {type.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Price Range */}
-              <select
-                value={priceRange}
-                onChange={(e) => setPriceRange(e.target.value)}
-                className="input-field"
-              >
-                <option value="">Todos los precios</option>
-                {PRICE_RANGES_FOR_SALE.map((range) => (
-                  <option key={range.value} value={range.value}>
-                    {range.label}
-                  </option>
-                ))}
-              </select>
-
-              {/* Search Button */}
-              <Button variant="hero" onClick={handleSearch} className="w-full">
-                Buscar propiedades
-              </Button>
-            </div>
 
             {/* Active Filters */}
             {getFilterPills().length > 0 && (

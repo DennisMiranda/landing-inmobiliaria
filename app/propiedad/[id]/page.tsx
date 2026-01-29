@@ -286,7 +286,7 @@ export default function PropertyDetailPage() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="input-field"
-                    placeholder="+51 999 999 999"
+                    placeholder="+51 982743773"
                     required
                   />
                 </div>
@@ -340,7 +340,7 @@ export default function PropertyDetailPage() {
               <div className="pt-4 border-t border-border space-y-3">
                 <div className="flex items-center gap-3 text-sm text-muted-foreground">
                   <Phone className="w-4 h-4" />
-                  <span>También puedes llamarnos al +51 999 999 999</span>
+                  <span>También puedes llamarnos al +51 982 743 773</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-muted-foreground">
                   <Mail className="w-4 h-4" />

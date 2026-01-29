@@ -1,5 +1,14 @@
 import { Property } from "@/models/property";
-import { Bath, Bed, MapPin, Maximize } from "lucide-react";
+import {
+  Bath,
+  Bed,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+  Maximize,
+} from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 
 interface PropertyCardProps {
   property: Property;
@@ -7,6 +16,18 @@ interface PropertyCardProps {
 }
 
 const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex(
+      (prev) => (prev - 1 + property.images.length) % property.images.length
+    );
+  };
+
   const formatPrice = (price: number, category: string) => {
     if (category === "alquiler") {
       return `S/. ${price.toLocaleString()}/mes`;
@@ -28,14 +49,68 @@ const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
 
   return (
     <article className="card-property cursor-pointer group" onClick={onClick}>
-      {/* Image */}
+      {/* Image Carousel */}
       <div className="relative aspect-[4/3] overflow-hidden">
-        <img
-          src={property.images[0]}
-          alt={property.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          loading="lazy"
-        />
+        {/* Images */}
+        <div className="relative w-full h-full">
+          {property.images.map((image, index) => (
+            <Image
+              key={index}
+              src={image}
+              alt={`${property.title} - Imagen ${index + 1}`}
+              className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 absolute inset-0 ${
+                index === currentImageIndex ? "opacity-100" : "opacity-0"
+              }`}
+              loading="lazy"
+              width={400}
+              height={300}
+            />
+          ))}
+        </div>
+
+        {/* Navigation Buttons - Only show if multiple images */}
+        {property.images.length > 1 && (
+          <>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                prevImage();
+              }}
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1.5 rounded-full hover:bg-black/70 transition-colors opacity-0 group-hover:opacity-100"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                nextImage();
+              }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1.5 rounded-full hover:bg-black/70 transition-colors opacity-0 group-hover:opacity-100"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </>
+        )}
+
+        {/* Image Indicators */}
+        {property.images.length > 1 && (
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+            {property.images.map((_, index) => (
+              <button
+                key={index}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentImageIndex(index);
+                }}
+                className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                  index === currentImageIndex ? "bg-white" : "bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Tags */}
         <div className="absolute top-3 left-3 flex gap-2">
           <span
             className={`tag-badge ${

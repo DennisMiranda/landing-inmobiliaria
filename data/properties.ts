@@ -65,7 +65,9 @@ export const propertiesForSale: Property[] = [
     category: "venta",
     area: 200,
     images: [
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800",
+      "/Paraiso/paraiso-1.jpg",
+      "/Paraiso/paraiso-2.jpg",
+      "/Paraiso/paraiso-3.jpg",
     ],
     features: ["Luz", "Agua de pozo", "Acciones y derechos"],
     createdAt: new Date(),
@@ -84,7 +86,9 @@ export const propertiesForSale: Property[] = [
     category: "venta",
     area: 152,
     images: [
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800",
+      "/Girasoles/girasoles-1.webp",
+      "/Girasoles/girasoles-2.webp",
+      "/Girasoles/girasoles-3.webp",
     ],
     features: ["Luz", "Postes instalados", "Acciones y derechos"],
     createdAt: new Date(),
@@ -102,7 +106,9 @@ export const propertiesForSale: Property[] = [
     category: "venta",
     area: 127,
     images: [
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800",
+      "/Girasoles/girasoles-1.webp",
+      "/Girasoles/girasoles-2.webp",
+      "/Girasoles/girasoles-3.webp",
     ],
     features: ["Agua para jalar", "Luz para jalar", "Acciones y derechos"],
     createdAt: new Date(),
@@ -121,68 +127,15 @@ export const propertiesForSale: Property[] = [
     category: "venta",
     area: 500,
     images: [
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800",
+      "/Viñani/viñani-1.jpg",
+      "/Viñani/viñani-2.jpg",
+      "/Viñani/viñani-3.jpg",
     ],
     features: ["Agua para jalar", "Luz para jalar", "Título de propiedad"],
     createdAt: new Date(),
     updatedAt: new Date(),
   },
-  {
-    id: "5",
-    title: "Lote en Urbanización Portales",
-    description:
-      "Lote de 100 m² en urbanización Planicie, frente a Zofratacna.",
-    price: 53000,
-    currency: currency.PEN,
-    province: "Tacna",
-    district: "Tacna",
-    type: "lote",
-    category: "venta",
-    area: 100,
-    images: [
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800",
-    ],
-    features: ["Servicios básicos", "Título de propiedad"],
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "6",
-    title: "Lote en Aeronova",
-    description: "Lote de 120 m² ubicado en la zona alta del aeropuerto.",
-    price: 30000,
-    currency: currency.USD,
-    province: "Tacna",
-    district: "Alto de la Alianza",
-    type: "lote",
-    category: "venta",
-    area: 120,
-    images: [
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800",
-    ],
-    features: ["Servicios básicos", "Título de propiedad"],
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "7",
-    title: "Casa en San Juan del Olivo – Calana",
-    description:
-      "Casa con techo propio y construcción de 40 m², ideal para familia pequeña.",
-    price: 60000,
-    currency: currency.PEN,
-    province: "Tacna",
-    district: "Calana",
-    type: "casa",
-    category: "venta",
-    area: 90,
-    images: [
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
-    ],
-    features: ["Servicios básicos", "Techo propio"],
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
+
   {
     id: "8",
     title: "Terreno en Magollo – 1.5 Ha",
@@ -196,7 +149,9 @@ export const propertiesForSale: Property[] = [
     category: "venta",
     area: 15000,
     images: [
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800",
+      "/Girasoles/girasoles-1.webp",
+      "/Girasoles/girasoles-2.webp",
+      "/Girasoles/girasoles-3.webp",
     ],
     features: ["Poste cercano", "Título de propiedad"],
     createdAt: new Date(),
@@ -215,7 +170,9 @@ export const propertiesForSale: Property[] = [
     category: "venta",
     area: 120,
     images: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+      "/Mercado/mercado-1.jpg",
+      "/Mercado/mercado-2.jpg",
+      "/Mercado/mercado-3.jpg",
     ],
     features: ["Servicios para jalar", "Acciones y derechos"],
     createdAt: new Date(),
@@ -234,7 +191,9 @@ export const propertiesForSale: Property[] = [
     category: "venta",
     area: 128,
     images: [
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
+      "/Sr Milagros/milagros-1.jpg",
+      "/Sr Milagros/milagros-2.jpg",
+      "/Sr Milagros/milagros-3.jpg",
     ],
     features: ["Servicios básicos", "Título de propiedad"],
     createdAt: new Date(),
@@ -253,7 +212,9 @@ export const propertiesForSale: Property[] = [
     category: "venta",
     area: 330,
     images: [
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800",
+      "/Girasoles/girasoles-1.webp",
+      "/Girasoles/girasoles-2.webp",
+      "/Girasoles/girasoles-3.webp",
     ],
     features: ["Servicios básicos", "Título independiente"],
     createdAt: new Date(),
@@ -263,7 +224,7 @@ export const propertiesForSale: Property[] = [
 
 export const propertiesForRent: Property[] = [
   {
-    id: "r1",
+    id: "1",
     title: "Casa Familiar en San Isidro",
     description:
       "Amplia casa familiar ideal para ejecutivos, completamente amoblada con jardín.",
@@ -276,116 +237,14 @@ export const propertiesForRent: Property[] = [
     bedrooms: 4,
     bathrooms: 3,
     area: 280,
-    images: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
-    ],
+    images: ["/Girasoles/girasoles-1.webp"],
     features: ["Amoblado", "Jardín", "Cochera", "Servicio incluido"],
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "r2",
-    title: "Departamento Ejecutivo",
-    description: "Moderno departamento amoblado, perfecto para profesionales.",
-    price: 1200,
-    currency: currency.PEN,
-    province: "Lima",
-    district: "Miraflores",
-    type: "departamento",
-    category: "alquiler",
-    bedrooms: 2,
-    bathrooms: 1,
-    area: 90,
-    images: [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800",
-    ],
-    features: ["Amoblado", "Internet", "Gimnasio", "Lavandería"],
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "r3",
-    title: "Local Comercial Céntrico",
-    description:
-      "Excelente local en zona comercial de alto tráfico, ideal para retail.",
-    price: 3500,
-    currency: currency.PEN,
-    province: "Lima",
-    district: "Centro de Lima",
-    type: "local",
-    category: "alquiler",
-    area: 150,
-    images: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
-    ],
-    features: ["Alto tráfico", "Vitrina amplia", "Depósito"],
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "r4",
-    title: "Departamento Económico",
-    description:
-      "Departamento cómodo y económico en zona tranquila de Arequipa.",
-    price: 600,
-    currency: currency.PEN,
-    province: "Arequipa",
-    type: "departamento",
-    category: "alquiler",
-    bedrooms: 1,
-    bathrooms: 1,
-    area: 55,
-    images: [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800",
-    ],
-    features: ["Agua incluida", "Cocina equipada"],
     createdAt: new Date(),
     updatedAt: new Date(),
   },
 ];
 
-export const projects: Project[] = [
-  {
-    id: "p1",
-    title: "Residencial Los Álamos",
-    description:
-      "Proyecto de habilitación urbana con 150 lotes residenciales, áreas verdes y parques.",
-    type: "habilitacion-urbana",
-    province: "Lima",
-    images: ["https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800"],
-    status: "en-venta",
-    units: 150,
-    priceFrom: 45000,
-  },
-  {
-    id: "p2",
-    title: "Torres del Sol",
-    description:
-      "Edificio residencial de 20 pisos con departamentos de 1, 2 y 3 dormitorios.",
-    type: "construccion",
-    province: "Arequipa",
-    images: [
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800",
-    ],
-    status: "en-venta",
-    units: 80,
-    priceFrom: 75000,
-  },
-  {
-    id: "p3",
-    title: "Urbanización Vista Verde",
-    description:
-      "Desarrollo integral con casas, áreas comerciales y zonas recreativas.",
-    type: "desarrollo",
-    province: "Trujillo",
-    images: [
-      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800",
-    ],
-    status: "proximamente",
-    units: 200,
-    priceFrom: 85000,
-  },
-];
+export const projects: Project[] = [];
 
 export const services: Service[] = [
   {
