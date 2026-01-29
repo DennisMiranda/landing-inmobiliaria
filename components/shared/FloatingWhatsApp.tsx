@@ -5,7 +5,7 @@ import Image from "next/image";
 const FloatingWhatsApp = () => {
   return (
     <a
-      href="https://wa.link/azrd12"
+      href="https://wa.link/sv4cbp"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chatea por WhatsApp"
