@@ -9,9 +9,9 @@ interface PropertyCardProps {
 const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
   const formatPrice = (price: number, category: string) => {
     if (category === "alquiler") {
-      return `$${price.toLocaleString()}/mes`;
+      return `S/. ${price.toLocaleString()}/mes`;
     }
-    return `$${price.toLocaleString()}`;
+    return `S/. ${price.toLocaleString()}`;
   };
 
   const getTypeLabel = (type: string) => {

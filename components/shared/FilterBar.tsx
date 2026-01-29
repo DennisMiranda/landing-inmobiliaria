@@ -1,22 +1,31 @@
-import { useState } from 'react';
-import { ChevronDown, X } from 'lucide-react';
-import { PROVINCES, PROPERTY_TYPES, PRICE_RANGES } from '@/data/properties';
-import { PropertyFilter, PropertyType } from '@/models/property';
+import {
+  PRICE_RANGES_FOR_RENTAL,
+  PROPERTY_TYPES,
+  PROVINCES,
+} from "@/data/properties";
+import { PropertyFilter, PropertyType } from "@/models/property";
+import { ChevronDown, X } from "lucide-react";
+import { useState } from "react";
 
 interface FilterBarProps {
   onFilterChange: (filters: PropertyFilter) => void;
   showTypeFilter?: boolean;
 }
 
-const FilterBar = ({ onFilterChange, showTypeFilter = true }: FilterBarProps) => {
+const FilterBar = ({
+  onFilterChange,
+  showTypeFilter = true,
+}: FilterBarProps) => {
   const [filters, setFilters] = useState<PropertyFilter>({});
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  const handleFilterChange = (key: keyof PropertyFilter, value: string | undefined) => {
+  const handleFilterChange = (
+    key: keyof PropertyFilter,
+    value: string | undefined
+  ) => {
     const newFilters = { ...filters };
-    
-    if (key === 'minPrice' || key === 'maxPrice') {
-      const range = PRICE_RANGES.find(r => r.value === value);
+    if (key === "minPrice" || key === "maxPrice") {
+      const range = PRICE_RANGES_FOR_RENTAL.find((r) => r.value === value);
       if (range) {
         newFilters.minPrice = range.min;
         newFilters.maxPrice = range.max;
@@ -29,7 +38,7 @@ const FilterBar = ({ onFilterChange, showTypeFilter = true }: FilterBarProps) =>
     } else {
       delete newFilters[key];
     }
-    
+
     setFilters(newFilters);
     onFilterChange(newFilters);
     setActiveDropdown(null);
@@ -44,10 +53,12 @@ const FilterBar = ({ onFilterChange, showTypeFilter = true }: FilterBarProps) =>
 
   const getPriceLabel = () => {
     if (filters.minPrice !== undefined) {
-      const range = PRICE_RANGES.find(r => r.min === filters.minPrice);
-      return range?.label || 'Precio';
+      const range = PRICE_RANGES_FOR_RENTAL.find(
+        (r) => r.min === filters.minPrice
+      );
+      return range?.label || "Precio";
     }
-    return 'Precio';
+    return "Precio";
   };
 
   return (
@@ -57,25 +68,31 @@ const FilterBar = ({ onFilterChange, showTypeFilter = true }: FilterBarProps) =>
         {/* Province Filter */}
         <div className="relative flex-shrink-0">
           <button
-            onClick={() => setActiveDropdown(activeDropdown === 'province' ? null : 'province')}
-            className={`filter-chip flex items-center gap-1.5 whitespace-nowrap ${filters.province ? 'filter-chip-active' : ''}`}
+            onClick={() =>
+              setActiveDropdown(
+                activeDropdown === "province" ? null : "province"
+              )
+            }
+            className={`filter-chip flex items-center gap-1.5 whitespace-nowrap ${
+              filters.province ? "filter-chip-active" : ""
+            }`}
           >
-            {filters.province || 'Ubicación'}
+            {filters.province || "Ubicación"}
             <ChevronDown className="w-4 h-4" />
           </button>
-          
-          {activeDropdown === 'province' && (
+
+          {activeDropdown === "province" && (
             <div className="absolute top-full left-0 mt-2 w-48 bg-card border border-border rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
               <button
-                onClick={() => handleFilterChange('province', undefined)}
+                onClick={() => handleFilterChange("province", undefined)}
                 className="w-full px-4 py-2 text-left text-sm hover:bg-muted transition-colors"
               >
                 Todas las ubicaciones
               </button>
-              {PROVINCES.map(province => (
+              {PROVINCES.map((province) => (
                 <button
                   key={province}
-                  onClick={() => handleFilterChange('province', province)}
+                  onClick={() => handleFilterChange("province", province)}
                   className="w-full px-4 py-2 text-left text-sm hover:bg-muted transition-colors"
                 >
                   {province}
@@ -88,25 +105,29 @@ const FilterBar = ({ onFilterChange, showTypeFilter = true }: FilterBarProps) =>
         {/* Price Filter */}
         <div className="relative flex-shrink-0">
           <button
-            onClick={() => setActiveDropdown(activeDropdown === 'price' ? null : 'price')}
-            className={`filter-chip flex items-center gap-1.5 whitespace-nowrap ${filters.minPrice !== undefined ? 'filter-chip-active' : ''}`}
+            onClick={() =>
+              setActiveDropdown(activeDropdown === "price" ? null : "price")
+            }
+            className={`filter-chip flex items-center gap-1.5 whitespace-nowrap ${
+              filters.minPrice !== undefined ? "filter-chip-active" : ""
+            }`}
           >
             {getPriceLabel()}
             <ChevronDown className="w-4 h-4" />
           </button>
-          
-          {activeDropdown === 'price' && (
+
+          {activeDropdown === "price" && (
             <div className="absolute top-full left-0 mt-2 w-56 bg-card border border-border rounded-lg shadow-lg z-50">
               <button
-                onClick={() => handleFilterChange('minPrice', undefined)}
+                onClick={() => handleFilterChange("minPrice", undefined)}
                 className="w-full px-4 py-2 text-left text-sm hover:bg-muted transition-colors"
               >
                 Todos los precios
               </button>
-              {PRICE_RANGES.map(range => (
+              {PRICE_RANGES_FOR_RENTAL.map((range) => (
                 <button
                   key={range.value}
-                  onClick={() => handleFilterChange('minPrice', range.value)}
+                  onClick={() => handleFilterChange("minPrice", range.value)}
                   className="w-full px-4 py-2 text-left text-sm hover:bg-muted transition-colors"
                 >
                   {range.label}
@@ -120,25 +141,32 @@ const FilterBar = ({ onFilterChange, showTypeFilter = true }: FilterBarProps) =>
         {showTypeFilter && (
           <div className="relative flex-shrink-0">
             <button
-              onClick={() => setActiveDropdown(activeDropdown === 'type' ? null : 'type')}
-              className={`filter-chip flex items-center gap-1.5 whitespace-nowrap ${filters.type ? 'filter-chip-active' : ''}`}
+              onClick={() =>
+                setActiveDropdown(activeDropdown === "type" ? null : "type")
+              }
+              className={`filter-chip flex items-center gap-1.5 whitespace-nowrap ${
+                filters.type ? "filter-chip-active" : ""
+              }`}
             >
-              {PROPERTY_TYPES.find(t => t.value === filters.type)?.label || 'Tipo'}
+              {PROPERTY_TYPES.find((t) => t.value === filters.type)?.label ||
+                "Tipo"}
               <ChevronDown className="w-4 h-4" />
             </button>
-            
-            {activeDropdown === 'type' && (
+
+            {activeDropdown === "type" && (
               <div className="absolute top-full left-0 mt-2 w-48 bg-card border border-border rounded-lg shadow-lg z-50">
                 <button
-                  onClick={() => handleFilterChange('type', undefined)}
+                  onClick={() => handleFilterChange("type", undefined)}
                   className="w-full px-4 py-2 text-left text-sm hover:bg-muted transition-colors"
                 >
                   Todos los tipos
                 </button>
-                {PROPERTY_TYPES.map(type => (
+                {PROPERTY_TYPES.map((type) => (
                   <button
                     key={type.value}
-                    onClick={() => handleFilterChange('type', type.value as PropertyType)}
+                    onClick={() =>
+                      handleFilterChange("type", type.value as PropertyType)
+                    }
                     className="w-full px-4 py-2 text-left text-sm hover:bg-muted transition-colors"
                   >
                     {type.label}

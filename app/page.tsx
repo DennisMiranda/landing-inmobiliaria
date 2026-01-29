@@ -1,9 +1,9 @@
 "use client";
 import ContactSection from "@/components/sections/ContactSection";
 import HeroSection from "@/components/sections/HeroSection";
+import PropertiesResultsSection from "@/components/sections/PropertiesResultsSection.tsx";
 import PropertiesSection from "@/components/sections/PropertiesSection";
 import RentalsSection from "@/components/sections/RentalsSection";
-import SearchResultsSection from "@/components/sections/SearchResultsSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import { PropertyFilter } from "@/models/property";
 import { useState } from "react";
@@ -31,7 +31,9 @@ export default function Home() {
       <HeroSection onSearch={handleSearch} />
 
       {/* Search Results - Only show when filters are active */}
-      {searchFilters && <SearchResultsSection searchFilters={searchFilters} />}
+      {searchFilters && (
+        <PropertiesResultsSection searchFilters={searchFilters} />
+      )}
 
       {/* Properties Sections - Show when no search is active */}
       {!searchFilters && (

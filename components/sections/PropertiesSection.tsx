@@ -82,7 +82,7 @@ const PropertiesSection = ({ searchFilters }: PropertiesSectionProps) => {
             <Button
               variant="outline"
               onClick={() => {
-                window.location.href = "/properties?type=sale";
+                window.location.href = "/propiedades?category=venta";
               }}
             >
               Ver más ({propertiesForSale.length - 6} más)

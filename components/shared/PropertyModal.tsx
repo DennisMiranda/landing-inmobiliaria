@@ -63,9 +63,9 @@ const PropertyModal = ({ property, onClose }: PropertyModalProps) => {
 
   const formatPrice = (price: number, category: string) => {
     if (category === "alquiler") {
-      return `$${price.toLocaleString()}/mes`;
+      return `$S/.{price.toLocaleString()}/mes`;
     }
-    return `$${price.toLocaleString()}`;
+    return `$S/.{price.toLocaleString()}`;
   };
 
   const scrollToContact = () => {

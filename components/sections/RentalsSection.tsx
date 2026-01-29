@@ -64,7 +64,7 @@ const RentalsSection = () => {
             <Button
               variant="outline"
               onClick={() => {
-                window.location.href = "/properties?type=rent";
+                window.location.href = "/propiedades?category=alquiler";
               }}
             >
               Ver más ({propertiesForRent.length - 6} más)

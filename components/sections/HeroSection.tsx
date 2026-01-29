@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { PRICE_RANGES, PROPERTY_TYPES, PROVINCES } from "@/data/properties";
+import { PRICE_RANGES_FOR_SALE, PROPERTY_TYPES, PROVINCES } from "@/data/properties";
 import { PropertyFilter } from "@/models/property";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
@@ -29,22 +29,21 @@ const HeroSection = ({ onSearch }: HeroSectionProps) => {
 
   const handleSearch = () => {
     // Parse price range
-    const priceRange = PRICE_RANGES.find(
+    const priceRange = PRICE_RANGES_FOR_SALE.find(
       (range) => range.value === selectedPriceRange
     );
 
-    const filters: PropertyFilter & { searchType: "comprar" | "alquilar" } = {
-      searchType: searchType as "comprar" | "alquilar",
-      province: location || undefined,
-      type: (propertyType as any) || undefined,
-      minPrice: priceRange?.min,
-      maxPrice: priceRange?.max,
-      category: searchType === "comprar" ? "venta" : "alquiler",
-    };
+    // Build URL parameters
+    const params = new URLSearchParams();
+    params.set("category", searchType === "comprar" ? "venta" : "alquiler");
 
-    if (onSearch) {
-      onSearch(filters);
-    }
+    if (location) params.set("province", location);
+    if (propertyType) params.set("type", propertyType);
+    if (priceRange?.min) params.set("minPrice", priceRange.min.toString());
+    if (priceRange?.max) params.set("maxPrice", priceRange.max.toString());
+
+    // Redirect to search results page
+    window.location.href = `/propiedades?${params.toString()}`;
   };
 
   // Animation variants
@@ -240,7 +239,7 @@ const HeroSection = ({ onSearch }: HeroSectionProps) => {
                   <SelectValue placeholder="Seleccionar precio" />
                 </SelectTrigger>
                 <SelectContent>
-                  {PRICE_RANGES.map((range) => (
+                  {PRICE_RANGES_FOR_SALE.map((range) => (
                     <SelectItem key={range.value} value={range.value}>
                       {range.label}
                     </SelectItem>
