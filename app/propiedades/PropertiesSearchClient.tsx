@@ -118,11 +118,11 @@ export default function SearchResultsPage() {
     if (searchFilters.minPrice || searchFilters.maxPrice) {
       const priceText =
         (searchFilters.minPrice
-          ? `Desde $${searchFilters.minPrice.toLocaleString()}`
+          ? `Desde S/. ${searchFilters.minPrice.toLocaleString()}`
           : "") +
         (searchFilters.minPrice && searchFilters.maxPrice ? " - " : "") +
         (searchFilters.maxPrice
-          ? `Hasta $${searchFilters.maxPrice.toLocaleString()}`
+          ? `Hasta S/. ${searchFilters.maxPrice.toLocaleString()}`
           : "");
 
       if (priceText) {

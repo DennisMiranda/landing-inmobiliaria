@@ -1,10 +1,20 @@
 "use client";
-import { useParams, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import Button from "@/components/shared/Button";
 import { propertiesForRent, propertiesForSale } from "@/data/properties";
 import { Property } from "@/models/property";
-import Button from "@/components/shared/Button";
-import { ArrowLeft, MapPin, Bed, Bath, Maximize, Phone, Mail, Check, Send } from "lucide-react";
+import {
+  ArrowLeft,
+  Bath,
+  Bed,
+  Check,
+  Mail,
+  MapPin,
+  Maximize,
+  Phone,
+  Send,
+} from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function PropertyDetailPage() {
   const params = useParams();
@@ -15,42 +25,55 @@ export default function PropertyDetailPage() {
 
   // Form state
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    message: ''
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
   });
 
   useEffect(() => {
     // Find property by ID
     const allProperties = [...propertiesForSale, ...propertiesForRent];
-    const foundProperty = allProperties.find(p => p.id === params.id);
-    
+    const foundProperty = allProperties.find((p) => p.id === params.id);
+
     if (foundProperty) {
       setProperty(foundProperty);
       // Pre-fill message with property info
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        message: `Estoy interesado(a) en esta propiedad.\n\n--- Información de la Propiedad ---\nTítulo: ${foundProperty.title}\nPrecio: ${formatPrice(foundProperty.price, foundProperty.category)}\nUbicación: ${foundProperty.district ? `${foundProperty.district}, ` : ''}${foundProperty.province}\nTipo: ${foundProperty.type}\n${foundProperty.area ? `Área: ${foundProperty.area} m²` : ''}\n${foundProperty.bedrooms ? `Dormitorios: ${foundProperty.bedrooms}` : ''}\n${foundProperty.bathrooms ? `Baños: ${foundProperty.bathrooms}` : ''}`
+        message: `Estoy interesado(a) en esta propiedad.\n\n--- Información de la Propiedad ---\nTítulo: ${
+          foundProperty.title
+        }\nPrecio: ${formatPrice(
+          foundProperty.price,
+          foundProperty.category
+        )}\nUbicación: ${
+          foundProperty.district ? `${foundProperty.district}, ` : ""
+        }${foundProperty.province}\nTipo: ${foundProperty.type}\n${
+          foundProperty.area ? `Área: ${foundProperty.area} m²` : ""
+        }\n${
+          foundProperty.bedrooms ? `Dormitorios: ${foundProperty.bedrooms}` : ""
+        }\n${
+          foundProperty.bathrooms ? `Baños: ${foundProperty.bathrooms}` : ""
+        }`,
       }));
     }
   }, [params.id]);
 
   const formatPrice = (price: number, category: string) => {
-    if (category === 'alquiler') {
-      return `$${price.toLocaleString()}/mes`;
+    if (category === "alquiler") {
+      return `S/.${price.toLocaleString()}/mes`;
     }
-    return `$${price.toLocaleString()}`;
+    return `S/.${price.toLocaleString()}`;
   };
 
   const getTypeLabel = (type: string) => {
     const types: Record<string, string> = {
-      casa: 'Casa',
-      departamento: 'Departamento',
-      lote: 'Lote',
-      local: 'Local Comercial',
-      oficina: 'Oficina',
-      terreno: 'Terreno',
+      casa: "Casa",
+      departamento: "Departamento",
+      lote: "Lote",
+      local: "Local Comercial",
+      oficina: "Oficina",
+      terreno: "Terreno",
     };
     return types[type] || type;
   };
@@ -60,17 +83,19 @@ export default function PropertyDetailPage() {
     setIsSubmitting(true);
 
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
     setIsSubmitting(false);
     setIsSubmitted(true);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -79,7 +104,7 @@ export default function PropertyDetailPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Propiedad no encontrada</h1>
-          <Button onClick={() => router.push('/propiedades')}>
+          <Button onClick={() => router.push("/propiedades")}>
             Volver a buscar propiedades
           </Button>
         </div>
@@ -99,7 +124,7 @@ export default function PropertyDetailPage() {
             Mensaje enviado, un asesor se contactará contigo muy pronto.
           </p>
           <div className="space-y-3">
-            <Button onClick={() => router.push('/propiedades')}>
+            <Button onClick={() => router.push("/propiedades")}>
               Buscar más propiedades
             </Button>
             <Button variant="outline" onClick={() => setIsSubmitted(false)}>
@@ -127,8 +152,12 @@ export default function PropertyDetailPage() {
               Volver
             </Button>
             <div className="flex items-center gap-2">
-              <span className={`tag-badge ${property.category === 'venta' ? 'tag-sale' : 'tag-rent'}`}>
-                {property.category === 'venta' ? 'Venta' : 'Alquiler'}
+              <span
+                className={`tag-badge ${
+                  property.category === "venta" ? "tag-sale" : "tag-rent"
+                }`}
+              >
+                {property.category === "venta" ? "Venta" : "Alquiler"}
               </span>
               <span className="tag-badge bg-foreground/80 text-background">
                 {getTypeLabel(property.type)}
@@ -165,7 +194,8 @@ export default function PropertyDetailPage() {
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="w-5 h-5" />
                 <span>
-                  {property.district ? `${property.district}, ` : ''}{property.province}
+                  {property.district ? `${property.district}, ` : ""}
+                  {property.province}
                 </span>
               </div>
 
@@ -203,7 +233,10 @@ export default function PropertyDetailPage() {
                   <h2 className="text-xl font-semibold">Características</h2>
                   <div className="grid grid-cols-2 gap-2">
                     {property.features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-2 text-sm">
+                      <div
+                        key={index}
+                        className="flex items-center gap-2 text-sm"
+                      >
                         <div className="w-2 h-2 bg-primary rounded-full"></div>
                         <span>{feature}</span>
                       </div>
@@ -218,9 +251,12 @@ export default function PropertyDetailPage() {
           <div className="space-y-6">
             <div className="bg-background/50 backdrop-blur-sm rounded-2xl border p-6 space-y-6">
               <div>
-                <h2 className="text-2xl font-bold mb-2">Contactar sobre esta propiedad</h2>
+                <h2 className="text-2xl font-bold mb-2">
+                  Contactar sobre esta propiedad
+                </h2>
                 <p className="text-muted-foreground">
-                  Completa el formulario y un asesor se pondrá en contacto contigo.
+                  Completa el formulario y un asesor se pondrá en contacto
+                  contigo.
                 </p>
               </div>
 
@@ -290,7 +326,7 @@ export default function PropertyDetailPage() {
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
-                    'Enviando...'
+                    "Enviando..."
                   ) : (
                     <>
                       <Send className="w-4 h-4" />
