@@ -47,7 +47,7 @@ const PropertiesSection = ({ searchFilters }: PropertiesSectionProps) => {
 
   return (
     <section
-      id="venta"
+      id="propiedades-venta"
       ref={sectionRef}
       className="section-padding bg-muted/30"
     >

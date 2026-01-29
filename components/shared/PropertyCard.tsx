@@ -1,5 +1,5 @@
-import { Property } from '@/models/property';
-import { MapPin, Bed, Bath, Maximize } from 'lucide-react';
+import { Property } from "@/models/property";
+import { Bath, Bed, MapPin, Maximize } from "lucide-react";
 
 interface PropertyCardProps {
   property: Property;
@@ -8,7 +8,7 @@ interface PropertyCardProps {
 
 const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
   const formatPrice = (price: number, category: string) => {
-    if (category === 'alquiler') {
+    if (category === "alquiler") {
       return `$${price.toLocaleString()}/mes`;
     }
     return `$${price.toLocaleString()}`;
@@ -16,21 +16,18 @@ const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
 
   const getTypeLabel = (type: string) => {
     const types: Record<string, string> = {
-      casa: 'Casa',
-      departamento: 'Departamento',
-      lote: 'Lote',
-      local: 'Local Comercial',
-      oficina: 'Oficina',
-      terreno: 'Terreno',
+      casa: "Casa",
+      departamento: "Departamento",
+      lote: "Lote",
+      local: "Local Comercial",
+      oficina: "Oficina",
+      terreno: "Terreno",
     };
     return types[type] || type;
   };
 
   return (
-    <article
-      className="card-property cursor-pointer group"
-      onClick={onClick}
-    >
+    <article className="card-property cursor-pointer group" onClick={onClick}>
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
@@ -40,8 +37,12 @@ const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
           loading="lazy"
         />
         <div className="absolute top-3 left-3 flex gap-2">
-          <span className={`tag-badge ${property.category === 'venta' ? 'tag-sale' : 'tag-rent'}`}>
-            {property.category === 'venta' ? 'Venta' : 'Alquiler'}
+          <span
+            className={`tag-badge ${
+              property.category === "venta" ? "tag-sale" : "tag-rent"
+            }`}
+          >
+            {property.category === "venta" ? "Venta" : "Alquiler"}
           </span>
           <span className="tag-badge bg-foreground/80 text-background">
             {getTypeLabel(property.type)}
@@ -65,7 +66,9 @@ const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
         <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
           <MapPin className="w-4 h-4 flex-shrink-0" />
           <span className="truncate">
-            {property.district ? `${property.district}, ${property.province}` : property.province}
+            {property.district
+              ? `${property.district}, ${property.province}`
+              : property.province}
           </span>
         </div>
 

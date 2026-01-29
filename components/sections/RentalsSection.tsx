@@ -29,7 +29,7 @@ const RentalsSection = () => {
 
   return (
     <section
-      id="alquiler"
+      id="propiedades-alquiler"
       ref={sectionRef}
       className="section-padding bg-muted/30"
     >
