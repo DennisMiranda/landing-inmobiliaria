@@ -31,7 +31,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61567507243512"
                 className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors"
               >
                 <Facebook className="w-5 h-5" />
@@ -126,9 +126,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm">
                 <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-background/70">
-                  Av. Principal 123, Lima, Perú
-                </span>
+                <span className="text-background/70">APV Viñani III.</span>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Phone className="w-5 h-5 text-primary flex-shrink-0" />
@@ -142,10 +140,10 @@ const Footer = () => {
               <li className="flex items-center gap-3 text-sm">
                 <Mail className="w-5 h-5 text-primary flex-shrink-0" />
                 <a
-                  href="mailto:info@amira.pe"
+                  href="mailto:ventas.amirainmobiliaria@gmail.com"
                   className="text-background/70 hover:text-primary transition-colors"
                 >
-                  info@amira.pe
+                  ventas.amirainmobiliaria@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3 text-sm">

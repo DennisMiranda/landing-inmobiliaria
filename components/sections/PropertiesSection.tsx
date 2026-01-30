@@ -4,6 +4,7 @@ import PropertyCard from "@/components/shared/PropertyCard";
 import PropertyModal from "@/components/shared/PropertyModal";
 import { propertiesForSale } from "@/data/properties";
 import { Property, PropertyFilter } from "@/models/property";
+import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 
 interface PropertiesSectionProps {
@@ -79,14 +80,13 @@ const PropertiesSection = ({ searchFilters }: PropertiesSectionProps) => {
         {/* View More Button */}
         {propertiesForSale.length > 6 && (
           <div className="text-center pt-4">
+            <Link href="/propiedades?category=venta">
             <Button
               variant="outline"
-              onClick={() => {
-                window.location.href = "/propiedades?category=venta";
-              }}
             >
               Ver más ({propertiesForSale.length - 6} más)
             </Button>
+            </Link>
           </div>
         )}
 

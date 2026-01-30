@@ -4,6 +4,7 @@ import PropertyCard from "@/components/shared/PropertyCard";
 import PropertyModal from "@/components/shared/PropertyModal";
 import { propertiesForRent } from "@/data/properties";
 import { Property } from "@/models/property";
+import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 
 interface RentalsSectionProps {
@@ -61,14 +62,13 @@ const RentalsSection = () => {
         {/* View More Button */}
         {propertiesForRent.length > 6 && (
           <div className="text-center pt-4">
+            <Link href="/propiedades?category=alquiler">
             <Button
               variant="outline"
-              onClick={() => {
-                window.location.href = "/propiedades?category=alquiler";
-              }}
             >
               Ver más ({propertiesForRent.length - 6} más)
             </Button>
+            </Link>
           </div>
         )}
 

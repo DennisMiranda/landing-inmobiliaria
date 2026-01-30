@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/components/shared/Button";
+import PropertyMap from "@/components/shared/PropertyMap";
 import { propertiesForRent, propertiesForSale } from "@/data/properties";
 import { Property } from "@/models/property";
 import {
@@ -245,6 +246,11 @@ export default function PropertyDetailPage() {
                 </div>
               )}
             </div>
+
+            {/* Map Placeholder */}
+              {property.locationUrl && (
+                <PropertyMap url={property.locationUrl} />
+              )}
           </div>
 
           {/* Contact Form */}
@@ -252,7 +258,7 @@ export default function PropertyDetailPage() {
             <div className="bg-background/50 backdrop-blur-sm rounded-2xl border p-6 space-y-6">
               <div>
                 <h2 className="text-2xl font-bold mb-2">
-                  Contactar sobre esta propiedad
+                  Contactar por esta propiedad
                 </h2>
                 <p className="text-muted-foreground">
                   Completa el formulario y un asesor se pondrá en contacto
@@ -286,7 +292,7 @@ export default function PropertyDetailPage() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="input-field"
-                    placeholder="+51 982743773"
+                    placeholder="+51 999999999"
                     required
                   />
                 </div>

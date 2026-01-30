@@ -1,13 +1,16 @@
+"use client";
+
 import { Property } from "@/models/property";
 import {
-  Bath,
-  Bed,
-  ChevronLeft,
-  ChevronRight,
-  MapPin,
-  Maximize,
+    Bath,
+    Bed,
+    ChevronLeft,
+    ChevronRight,
+    MapPin,
+    Maximize,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 interface PropertyCardProps {
@@ -52,21 +55,23 @@ const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
       {/* Image Carousel */}
       <div className="relative aspect-[4/3] overflow-hidden">
         {/* Images */}
-        <div className="relative w-full h-full">
-          {property.images.map((image, index) => (
-            <Image
-              key={index}
-              src={image}
-              alt={`${property.title} - Imagen ${index + 1}`}
-              className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 absolute inset-0 ${
-                index === currentImageIndex ? "opacity-100" : "opacity-0"
-              }`}
-              loading="lazy"
-              width={400}
-              height={300}
-            />
-          ))}
-        </div>
+        <Link href={`/propiedad/${property.id}`}>
+          <div className="relative w-full h-full">
+            {property.images.map((image, index) => (
+              <Image
+                key={index}
+                src={image}
+                alt={`${property.title} - Imagen ${index + 1}`}
+                className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 absolute inset-0 ${
+                  index === currentImageIndex ? "opacity-100" : "opacity-0"
+                }`}
+                loading="lazy"
+                width={400}
+                height={300}
+              />
+            ))}
+          </div>
+        </Link>
 
         {/* Navigation Buttons - Only show if multiple images */}
         {property.images.length > 1 && (

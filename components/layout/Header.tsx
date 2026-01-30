@@ -1,19 +1,20 @@
 import { Briefcase, Building2, Home, Key, Phone } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 /*  1. ARREGLO BASE */
 
 const navItems = [
-  { id: "home", label: "Inicio", href: "#", icon: Home },
+  { id: "home", label: "Inicio", href: "/#", icon: Home },
   {
     id: "sale",
     label: "Propiedades",
-    href: "#propiedades-venta",
+    href: "/#propiedades-venta",
     icon: Building2,
   },
-  { id: "rent", label: "Alquiler", href: "#propiedades-alquiler", icon: Key },
-  { id: "services", label: "Servicios", href: "#servicios", icon: Briefcase },
-  { id: "contact", label: "Contacto", href: "#contacto", icon: Phone },
+  { id: "rent", label: "Alquiler", href: "/#propiedades-alquiler", icon: Key },
+  { id: "services", label: "Servicios", href: "/#servicios", icon: Briefcase },
+  { id: "contact", label: "Contacto", href: "/#contacto", icon: Phone },
 ];
 
 /* 2. ORDEN POR BREAKPOINT */
@@ -36,22 +37,22 @@ export default function NavBar() {
       {/* NAV WEB */}
       <header className="hidden md:flex fixed top-0 left-0 right-0 h-16 bg-white border-b z-50">
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between px-6 gap-8">
-          <a href="#" className="flex items-center gap-2">
+          <Link href="/#" className="flex items-center gap-2">
             <Image src="/logo.jpeg" alt="Logo" width={40} height={40} />
-          </a>
+          </Link>
           <div className="flex-1"></div>
           {desktopMenu.map((item) => {
             const Icon = item.icon;
 
             return (
-              <a
+              <Link
                 key={item.id}
                 href={item.href}
                 className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition"
               >
                 <Icon size={18} />
                 <span>{item.label}</span>
-              </a>
+              </Link>
             );
           })}
         </div>

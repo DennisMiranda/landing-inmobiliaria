@@ -28,15 +28,23 @@ export interface Property {
   locationUrl?: string;
 }
 
-export type PropertyType =
-  | "casa"
-  | "departamento"
-  | "lote"
-  | "local"
-  | "oficina"
-  | "terreno";
+export const PROPERTY_TYPES = {
+  house: "casa",
+  apartment: "departamento",
+  lot: "lote",
+  commercial: "local",
+  office: "oficina",
+  land: "terreno",
+} as const;
+export type PropertyType = (typeof PROPERTY_TYPES)[keyof typeof PROPERTY_TYPES];
 
-export type PropertyCategory = "venta" | "alquiler" | "proyecto";
+export const PROPERTY_CATEGORIES = {
+  sale: "venta",
+  rent: "alquiler",
+  buy: "comprar",
+} as const;
+export type PropertyCategory =
+  (typeof PROPERTY_CATEGORIES)[keyof typeof PROPERTY_CATEGORIES];
 
 export interface PropertyFilter {
   province?: string;
@@ -44,6 +52,8 @@ export interface PropertyFilter {
   maxPrice?: number;
   type?: PropertyType;
   category?: PropertyCategory;
+  page?: number;
+  limit?: number;
 }
 
 export interface Project {

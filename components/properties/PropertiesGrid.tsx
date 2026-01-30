@@ -11,7 +11,7 @@ interface Props {
   params:PropertyFilter
 };
 
-export default async function SearchResultsPage({params}:Props) {
+export default function SearchResultsPage({params}:Props) {
   const router = useRouter();
   const pathname = usePathname();
 
