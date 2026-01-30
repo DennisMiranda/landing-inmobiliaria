@@ -132,7 +132,7 @@
   --shadow-button: var(--shadow-button);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: 222 47% 6%;
     --foreground: 210 40% 98%;
@@ -173,7 +173,7 @@
     --sidebar-border: 217 33% 17%;
     --sidebar-ring: 217 91% 60%;
   }
-}
+} */
 
 @layer base {
   * {
@@ -323,4 +323,23 @@
 .map {
   width: 100%;
   height: 100%;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.hero-person {
+  animation: float 4.5s ease-in-out ;
+}
+.hero-title {
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
