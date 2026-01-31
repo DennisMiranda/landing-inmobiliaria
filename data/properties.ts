@@ -212,9 +212,9 @@ export const propertiesForSale: Property[] = [
     category: "venta",
     area: 128,
     images: [
-      "/Sr Milagros/milagros-1.jpg",
-      "/Sr Milagros/milagros-2.jpg",
-      "/Sr Milagros/milagros-3.jpg",
+      "/Sr milagros/milagros-1.jpg",
+      "/Sr milagros/milagros-2.jpg",
+      "/Sr milagros/milagros-3.jpg",
     ],
     features: ["Título de propiedad independiente", "Luz, agua y desagüe"],
     locationUrl:
@@ -287,6 +287,7 @@ export const services: Service[] = [
     description:
       "Regularización de títulos de propiedad, inscripción en registros públicos y trámites municipales.",
     icon: "FileCheck",
+    linkToWhatsapp: "https://wa.link/8clpnl",
   },
   {
     id: "s3",
@@ -294,26 +295,22 @@ export const services: Service[] = [
     description:
       "Diseño y construcción de viviendas a medida con los mejores materiales y acabados.",
     icon: "Hammer",
+    linkToWhatsapp: "https://wa.link/sfgb1s",
   },
   {
     id: "s4",
-    title: "Desarrollo de Proyectos",
-    description:
-      "Gestión integral de proyectos inmobiliarios desde la conceptualización hasta la entrega.",
-    icon: "Building2",
-  },
-  {
-    id: "s5",
     title: "Vende tu Propiedad",
     description:
       "Te ayudamos a vender tu propiedad al mejor precio con marketing profesional y asesoría personalizada.",
     icon: "BadgeDollarSign",
+    linkToWhatsapp: "https://wa.link/4vsvwg",
   },
   {
-    id: "s6",
+    id: "s5",
     title: "Alquila tu Propiedad",
     description:
       "Gestionamos el alquiler de tu propiedad, desde la promoción hasta la administración del contrato.",
     icon: "Key",
+    linkToWhatsapp: "https://wa.link/pf4if9",
   },
 ];
