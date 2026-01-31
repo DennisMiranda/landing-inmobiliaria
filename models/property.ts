@@ -75,6 +75,7 @@ export interface Service {
   title: string;
   description: string;
   icon: string;
+  linkToWhatsapp?: string;
 }
 
 export interface ContactFormData {

@@ -30,9 +30,25 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
       </h3>
 
       {/* Description */}
-      <p className="text-sm text-muted-foreground leading-relaxed text-center">
+      <p className="text-sm text-muted-foreground leading-relaxed text-center h-20">
         {service.description}
       </p>
+
+      <a
+      href={service.linkToWhatsapp}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        inline-flex items-center justify-center
+        border border-primary
+        p-2 rounded-lg shadow
+        text-primary font-semibold
+        hover:bg-primary hover:text-primary-foreground
+        transition-colors
+      "
+        >
+        Contactar por este servicio
+        </a>
     </article>
   );
 };
