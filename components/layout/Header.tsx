@@ -38,7 +38,7 @@ export default function NavBar() {
       <header className="hidden md:flex fixed top-0 left-0 right-0 h-16 bg-white border-b z-50">
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between px-6 gap-8">
           <Link href="/#" className="flex items-center gap-2">
-            <Image src="/logo.jpeg" alt="Logo" width={40} height={40} />
+            <Image src="/logo.png" alt="Logo" width={40} height={40} />
           </Link>
           <div className="flex-1"></div>
           {desktopMenu.map((item) => {
@@ -63,7 +63,7 @@ export default function NavBar() {
         href="#"
         className="md:hidden fixed top-6 left-6 z-50 flex items-center gap-2 bg-white/10 backdrop-blur-sm p-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
       >
-        <Image src="/logo.jpeg" alt="Logo" width={40} height={40} />
+        <Image src="/logo.png" alt="Logo" width={40} height={40} />
       </a>
 
       {/* NAV MÓVIL */}
