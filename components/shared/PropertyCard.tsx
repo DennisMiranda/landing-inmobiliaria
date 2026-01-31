@@ -2,12 +2,12 @@
 
 import { Property } from "@/models/property";
 import {
-    Bath,
-    Bed,
-    ChevronLeft,
-    ChevronRight,
-    MapPin,
-    Maximize,
+  Bath,
+  Bed,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+  Maximize,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -55,7 +55,7 @@ const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
       {/* Image Carousel */}
       <div className="relative aspect-[4/3] overflow-hidden">
         {/* Images */}
-        <Link href={`/propiedad/${property.id}`}>
+        <Link href={`/propiedades/${property.id}`}>
           <div className="relative w-full h-full">
             {property.images.map((image, index) => (
               <Image

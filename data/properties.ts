@@ -76,7 +76,7 @@ export const propertiesForSale: Property[] = [
   },
   {
     id: "2",
-    title: "Lote en Girasoles – Magollo",
+    title: "Lote en Girasoles - Magollo",
     description:
       "Lotes de 152 m² y 160 m² en excelente ubicación, a la altura del km 11 de la carretera Costanera, cerca del Bosque Municipal. Zona con gran proyección de crecimiento. Precios desde S/ 15,500.",
     price: 15500,
