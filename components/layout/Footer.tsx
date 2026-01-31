@@ -2,11 +2,12 @@ import {
   Clock,
   Facebook,
   Instagram,
-  Linkedin,
   Mail,
   MapPin,
+  Music2,
   Phone,
 } from "lucide-react";
+import Image from "next/image";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,16 +19,19 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg font-heading">
-                  A
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center">
+                <span className=" font-bold text-lg font-heading">
+                <Image
+                  src="/logo-white.png"
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                />
                 </span>
               </div>
-              <span className="font-bold text-xl font-heading">Amira</span>
             </div>
             <p className="text-background/70 text-sm leading-relaxed">
-              Tu inmobiliaria de confianza. Encuentra tu nuevo hogar con
-              nosotros.
+             Encuentra tu nuevo hogar con nosotros.
             </p>
             <div className="flex gap-4">
               <a
@@ -37,16 +41,16 @@ const Footer = () => {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/amirainmobiliaria/"
                 className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.tiktok.com/@amirainmobiliaria"
                 className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors"
               >
-                <Linkedin className="w-5 h-5" />
+                <Music2 className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -68,17 +72,17 @@ const Footer = () => {
                   href="#alquiler"
                   className="text-background/70 hover:text-primary transition-colors text-sm"
                 >
-                  Alquiler
+                  Propiedades en Alquiler
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="#proyectos"
                   className="text-background/70 hover:text-primary transition-colors text-sm"
                 >
                   Proyectos
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a
                   href="#servicios"
@@ -110,10 +114,10 @@ const Footer = () => {
               </li>
               <li className="text-background/70 text-sm">Construcción</li>
               <li className="text-background/70 text-sm">
-                Desarrollo de Proyectos
+                Vende tu Propiedad
               </li>
               <li className="text-background/70 text-sm">
-                Administración de Alquileres
+                Alquila tu Propiedad
               </li>
             </ul>
           </div>
