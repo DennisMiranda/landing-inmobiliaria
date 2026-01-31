@@ -130,7 +130,7 @@ export const propertiesForSale: Property[] = [
     description:
       "Amplio lote de 500 m² cerca al paradero 14, con título de propiedad independiente. Antes del puente de Valle 2000.",
     price: 80000,
-    currency: currency.USD,
+    currency: currency.PEN,
     province: "Tacna",
     district: "Gregorio Albarracín",
     type: "lote",

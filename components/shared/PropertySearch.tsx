@@ -114,8 +114,7 @@ const PropertySearch = ({
   };
 
   const handleSale = () => {
-    const element = document.getElementById("contacto");
-    element?.scrollIntoView({ behavior: "smooth" });
+    router.push("/vender-propiedad");
   };
 
   const handleRent = () => {
