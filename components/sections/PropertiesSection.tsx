@@ -71,7 +71,6 @@ const PropertiesSection = ({ searchFilters }: PropertiesSectionProps) => {
             >
               <PropertyCard
                 property={property}
-                onClick={() => setSelectedProperty(property)}
               />
             </div>
           ))}
@@ -84,7 +83,7 @@ const PropertiesSection = ({ searchFilters }: PropertiesSectionProps) => {
             <Button
               variant="outline"
             >
-              Ver más ({propertiesForSale.length - 6} más)
+              Ver más propiedades
             </Button>
             </Link>
           </div>

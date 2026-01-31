@@ -249,7 +249,7 @@ export const propertiesForSale: Property[] = [
 
 export const propertiesForRent: Property[] = [
   {
-    id: "1",
+    id: "20",
     title: "Local Comercial cerca de paradero 14",
     description:
       "Local comercial de 40 m² en Av. La Cultura, amplio e iluminado, cerca de paradero 14.",
